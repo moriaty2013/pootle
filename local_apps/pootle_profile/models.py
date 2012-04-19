@@ -61,6 +61,7 @@ class PootleProfileManager(models.Manager):
 
 class PootleProfile(models.Model):
     objects = PootleProfileManager()
+
     class Meta:
         db_table = 'pootle_app_pootleprofile'
 

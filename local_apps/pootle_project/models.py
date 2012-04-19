@@ -42,6 +42,7 @@ class ProjectManager(RelatedManager):
 
 class Project(models.Model):
     objects = ProjectManager()
+
     class Meta:
         ordering = ['code']
         db_table = 'pootle_app_project'

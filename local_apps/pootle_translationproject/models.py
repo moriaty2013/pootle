@@ -85,6 +85,7 @@ class TranslationProject(models.Model):
 
     objects = TranslationProjectManager()
     index_directory = ".translation_index"
+
     class Meta:
         unique_together = ('language', 'project')
         db_table = 'pootle_app_translationproject'

@@ -37,6 +37,7 @@ def _format_translation(message, vars=None):
 
 try:
     from django.utils.translation import _trans
+
     def ugettext(message, vars=None):
         return _format_translation(_trans.ugettext(message), vars)
 

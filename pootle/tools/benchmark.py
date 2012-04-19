@@ -31,6 +31,7 @@ class PootleBenchmarker:
     """class to aid in benchmarking pootle"""
     StoreClass = store_file.store_file
     UnitClass = store_file.pootleunit
+
     def __init__(self, test_dir):
         """sets up benchmarking on the test directory"""
         self.test_dir = os.path.abspath(test_dir)

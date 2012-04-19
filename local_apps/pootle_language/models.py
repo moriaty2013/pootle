@@ -36,6 +36,7 @@ class LanguageManager(RelatedManager):
 
 class Language(models.Model):
     objects = LanguageManager()
+
     class Meta:
         ordering = ['code']
         db_table = 'pootle_app_language'

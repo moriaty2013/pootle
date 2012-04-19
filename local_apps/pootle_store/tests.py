@@ -339,6 +339,7 @@ class XHRTestNobody(XHRTestAnonymous):
     """
     username = 'nonpriv'
     password = 'nonpriv'
+
     def setUp(self):
         super(XHRTestNobody, self).setUp()
         self.client.login(username=self.username, password=self.password)

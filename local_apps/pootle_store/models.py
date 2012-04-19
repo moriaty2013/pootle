@@ -83,6 +83,7 @@ class Suggestion(models.Model, base.TranslationUnit):
     """suggested translation for unit, provided by users or
     automatically generated after a merge"""
     objects = SuggestionManager()
+
     class Meta:
         unique_together = ('unit', 'target_hash')
 
@@ -169,6 +170,7 @@ class UnitManager(RelatedManager):
 
 class Unit(models.Model, base.TranslationUnit):
     objects = UnitManager()
+
     class Meta:
         ordering = ['store', 'index']
         unique_together = ('store', 'unitid_hash')
