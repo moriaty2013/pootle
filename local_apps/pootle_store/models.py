@@ -702,7 +702,7 @@ class Store(models.Model, base.TranslationStore):
         unique_together = ('parent', 'name')
 
     file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs, db_index=True, null=False, editable=False)
-    pending = TranslationStoreField(ignore='.pending', upload_to="fish", max_length=255, storage=fs, editable=False) # deprecated
+    pending = TranslationStoreField(ignore='.pending', upload_to="fish", max_length=255, storage=fs, editable=False)  # deprecated
     tm = TranslationStoreField(ignore='.tm', upload_to="fish", max_length=255, storage=fs, editable=False)
     parent = models.ForeignKey('pootle_app.Directory', related_name='child_stores', db_index=True, editable=False)
     translation_project = models.ForeignKey('pootle_translationproject.TranslationProject', related_name='stores', db_index=True, editable=False)

@@ -198,7 +198,7 @@ def upload_link(request, path_obj):
         #FIXME: check for upload permissions
         text = _('Upload Translated File')
         tooltip = _('Open dialog for file upload/merge')
-        link = 'javascript:alert("Not implemented")' #FIXME: provide actual link
+        link = 'javascript:alert("Not implemented")'  # FIXME: provide actual link
         return {
             'class': 'translate upload',
             'href': link,
@@ -229,8 +229,8 @@ def update_link(request, path_obj):
         }
 
 def update_all_link(request, path_obj):
-    if check_permission('commit', request): #FIXME: also check if directory under VCS control
-        link = 'javascript:alert("Not implemented")' #FIXME: provide actual link
+    if check_permission('commit', request):  # FIXME: also check if directory under VCS control
+        link = 'javascript:alert("Not implemented")'  # FIXME: provide actual link
         text = _('Update from VCS')
         return {
             'class': 'vcs update',

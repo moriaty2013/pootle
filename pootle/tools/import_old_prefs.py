@@ -107,7 +107,7 @@ def import_sitesettings(parsed_data):
 
 @commit_on_success
 def import_languages(parsed_data):
-    data = parsed_data.__root__._assignments # Is this really the right way?
+    data = parsed_data.__root__._assignments  # Is this really the right way?
     prefix = 'Pootle.languages.'
 
     # Filter out unrelated keys
@@ -151,7 +151,7 @@ def import_projects(parsed_data):
     # "Want us to import projects? Say no if you have already
     # added the projects to the new Pootle DB in the web UI."
 
-    data = parsed_data.__root__._assignments # Is this really the right way?
+    data = parsed_data.__root__._assignments  # Is this really the right way?
     prefix = 'Pootle.projects.'
 
     # Filter out unrelated keys
@@ -247,7 +247,7 @@ def create_database_user(data, user_name):
                                                           unicode_me=False, default=10))
     # uilanguage
     raw_uilanguage = _get_user_attribute(data, user_name, 'uilanguages')
-    assert ',' not in raw_uilanguage # just one value here
+    assert ',' not in raw_uilanguage  # just one value here
     if raw_uilanguage:
         try:
             profile.ui_lang = Language.objects.get(code=raw_uilanguage)
@@ -256,12 +256,12 @@ def create_database_user(data, user_name):
                             "UI language, but %(lang_code)s is not available in Pootle's "\
                             "language database", dict(username=user.username, lang_code=raw_uilanguage))
     else:
-        pass # leave it NULL
+        pass  # leave it NULL
 
     # altsrclanguage
     raw_altsrclanguage = _get_user_attribute(data, user_name,
                                              'altsrclanguage')
-    assert ',' not in raw_altsrclanguage # just one value here
+    assert ',' not in raw_altsrclanguage  # just one value here
     if raw_altsrclanguage:
         try:
             profile.alt_src_lang = Language.objects.get(code=raw_altsrclanguage)
@@ -271,7 +271,7 @@ def create_database_user(data, user_name):
                             "available in Pootle's language database",
                         dict(username=user.username, lang_code=raw_uilanguage))
     else:
-        pass # leave it NULL
+        pass  # leave it NULL
     profile.save()
     logging.log(logging.INFO, 'Created a profile object for %s', user_name)
 
@@ -323,8 +323,8 @@ def as_unicode(string):
 
 @commit_on_success
 def import_users(parsed_users):
-    data = parsed_users.__root__._assignments # Is this really the
-                                              # right way?
+    data = parsed_users.__root__._assignments  # Is this really the
+                                               # right way?
 
     # Groan - figure out the usernames
     usernames = (key.split('.')[0] for key in data)

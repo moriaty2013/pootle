@@ -28,7 +28,7 @@ import os
 import sys
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
-sys.path.insert(0, ROOT_DIR) # Top level directory
+sys.path.insert(0, ROOT_DIR)  # Top level directory
 
-sys.path.insert(0, os.path.join(ROOT_DIR, 'external_apps')) # external reusable apps
-sys.path.insert(0, os.path.join(ROOT_DIR, 'local_apps')) # apps developed specifically for Pootle
+sys.path.insert(0, os.path.join(ROOT_DIR, 'external_apps'))  # external reusable apps
+sys.path.insert(0, os.path.join(ROOT_DIR, 'local_apps'))  # apps developed specifically for Pootle

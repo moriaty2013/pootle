@@ -82,23 +82,23 @@ ADMIN_MEDIA_PREFIX = '/media/'
 SECRET_KEY = '^&4$dlpce2_pnronsi289xd7-9ke10q_%wa@9srm@zaa!ig@1k'
 
 MIDDLEWARE_CLASSES = (
-    'pootle_misc.middleware.baseurl.BaseUrlMiddleware', # resolves paths
-    'django.middleware.transaction.TransactionMiddleware', # needs to be before anything that writes to the db
-    'pootle_misc.middleware.siteconfig.SiteConfigMiddleware', # must be early to detect the need to install or update schema, but must precede the cache middleware
-    'django.middleware.cache.UpdateCacheMiddleware', # must be as high as possible (see above)
-    'django.middleware.http.ConditionalGetMiddleware', # support for e-tag
-    'django.middleware.gzip.GZipMiddleware', # compress responses
-    'django.middleware.csrf.CsrfViewMiddleware', # protection against cross-site request forgery
-    'django.contrib.sessions.middleware.SessionMiddleware', # must be before authentication
-    'django.contrib.auth.middleware.AuthenticationMiddleware', # must be before anything user-related
-    'django.middleware.locale.LocaleMiddleware', # user-related
-    'pootle.middleware.setlocale.SetLocale', # sets Python's locale based on request's locale for sorting, etc.
-    'pootle_misc.middleware.errorpages.ErrorPagesMiddleware', # nice 500 and 403 pages (must be after locale to have translated versions)
+    'pootle_misc.middleware.baseurl.BaseUrlMiddleware',  # resolves paths
+    'django.middleware.transaction.TransactionMiddleware',  # needs to be before anything that writes to the db
+    'pootle_misc.middleware.siteconfig.SiteConfigMiddleware',  # must be early to detect the need to install or update schema, but must precede the cache middleware
+    'django.middleware.cache.UpdateCacheMiddleware',  # must be as high as possible (see above)
+    'django.middleware.http.ConditionalGetMiddleware',  # support for e-tag
+    'django.middleware.gzip.GZipMiddleware',  # compress responses
+    'django.middleware.csrf.CsrfViewMiddleware',  # protection against cross-site request forgery
+    'django.contrib.sessions.middleware.SessionMiddleware',  # must be before authentication
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  # must be before anything user-related
+    'django.middleware.locale.LocaleMiddleware',  # user-related
+    'pootle.middleware.setlocale.SetLocale',  # sets Python's locale based on request's locale for sorting, etc.
+    'pootle_misc.middleware.errorpages.ErrorPagesMiddleware',  # nice 500 and 403 pages (must be after locale to have translated versions)
     'django.middleware.common.CommonMiddleware',
     #'pootle.middleware.check_cookies.CheckCookieMiddleware',
-    'pootle.middleware.captcha.CaptchaMiddleware', # must be early in the response cycle (close to bottom)
+    'pootle.middleware.captcha.CaptchaMiddleware',  # must be early in the response cycle (close to bottom)
     #'pootle.middleware.profile.ProfilerMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware' # must be last in the request cycle (at the bottom)
+    'django.middleware.cache.FetchFromCacheMiddleware'  # must be last in the request cycle (at the bottom)
 )
 
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
