@@ -147,4 +147,3 @@ class PootleCommand(NoArgsCommand):
                 if tp == template_tp:
                     continue
                 self.do_translation_project(tp, path, **options)
-

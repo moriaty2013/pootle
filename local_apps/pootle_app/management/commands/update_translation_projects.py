@@ -74,4 +74,3 @@ class Command(PootleCommand):
         if clean and does_not_exists(translation_project.abs_real_path):
             logging.info(u"Deleting %s", translation_project)
             translation_project.delete()
-

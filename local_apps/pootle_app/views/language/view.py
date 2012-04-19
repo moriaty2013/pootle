@@ -123,4 +123,3 @@ def update_file(request, translation_project, file_path):
     store = get_object_or_404(Store, pootle_path=pootle_path)
     result = translation_project.update_file(request, store)
     return redirect(dispatch.show_directory(request, translation_project.directory.pootle_path))
-
