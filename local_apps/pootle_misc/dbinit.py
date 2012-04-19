@@ -69,12 +69,14 @@ def header(exception):
            'msg': _('Error: "%s" while attempting to access the Pootle database, will try to initialize database.', exception)}
     return text
 
+
 def syncdb():
     text = u"""
     <p>%s</p>
     """ % _('Creating database tables...')
     call_command('syncdb', interactive=False)
     return text
+
 
 def initdb():
     text = u"""
@@ -83,12 +85,14 @@ def initdb():
     call_command('initdb')
     return text
 
+
 def stats_start():
     text = u"""
     <p>%s</p>
     <ul>
     """ % _('Calculating translation statistics, this will take a few minutes')
     return text
+
 
 def stats_language(language):
     text = u"""
@@ -97,12 +101,14 @@ def stats_language(language):
             {'language': language.localname(), 'percent': language.translated_percentage()})
     return text
 
+
 def stats_project(project):
     text = u"""
     <li>%s</li>
     """ % _('Project %(project)s is %(percent)d%% complete',
             {'project': project.fullname, 'percent': project.translated_percentage()})
     return text
+
 
 def stats_end():
     text = u"""
@@ -111,6 +117,7 @@ def stats_end():
     """ % _('Done calculating statistics for default languages and projects')
     return text
 
+
 def footer():
     text = """
     <p>%(endmsg)s</p>
@@ -118,6 +125,7 @@ def footer():
     </body></html>
     """ % {'endmsg': _('Initialized database, you will be redirected to the front page in 10 seconds')}
     return text
+
 
 def staggered_install(exception):
     """Initialize the pootle database while displaying progress

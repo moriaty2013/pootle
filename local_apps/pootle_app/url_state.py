@@ -19,6 +19,7 @@
 # along with Pootle; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+
 class Value(object):
     """Python descriptor for marshalling GET/POST state into Python
     variables and back.
@@ -85,6 +86,7 @@ class Value(object):
     def __repr__(self):
         return "Value<%s>" % self.var_name
 
+
 class BooleanValue(Value):
     default_value = False
 
@@ -99,6 +101,7 @@ class BooleanValue(Value):
             return 'True'
         else:
             return 'False'
+
 
 class IntValue(Value):
     """Read a GET/POST variable into an integer. The descriptor's
@@ -139,6 +142,7 @@ class IntValue(Value):
         assert isinstance(value, int)
         return str(value)
 
+
 class ChoiceValue(Value):
     """Read a string GET/POST variable ensuring that it matches one of
     the choices specified when constructing this object. If not, set
@@ -170,6 +174,7 @@ class ChoiceValue(Value):
         else:
             return self.default_value
 
+
 class ListValue(Value):
     """Read a comma separated GET/POST variable into a Python list of
     strings.
@@ -200,6 +205,7 @@ class ListValue(Value):
     def _encode(self, value):
         return ','.join(str(item) for item in value)
 
+
 def get_descriptors(cls, descriptors, visited):
     """Enumerate a class and all its subclasses in a depth-first post
     order traversal and collect all the Python descriptors into the
@@ -211,6 +217,7 @@ def get_descriptors(cls, descriptors, visited):
     descriptors.extend(descriptor for descriptor in cls.__dict__.itervalues()
                        if isinstance(descriptor, Value))
     return descriptors
+
 
 class State(object):
     """Base class for classes which, using any of the *Value classes

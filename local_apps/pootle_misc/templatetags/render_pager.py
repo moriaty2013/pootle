@@ -22,6 +22,7 @@ from django.utils.translation import ugettext as _
 from django import template
 from django.utils.safestring import mark_safe
 
+
 def render_pager(pager):
     """Render a pager block with next and previous links"""
     if not pager.has_other_pages():

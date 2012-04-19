@@ -201,6 +201,7 @@ from django.utils.translation import trans_real
 
 LANGUAGES = override.find_languages(LOCALE_PATHS[0])
 
+
 def hijack_translation():
     """sabotage django's fascist linguistical regime"""
     # override functions that check if language if language is

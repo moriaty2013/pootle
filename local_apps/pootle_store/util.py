@@ -36,6 +36,7 @@ FUZZY = 50
 TRANSLATED = 200
 """unit is fully translated"""
 
+
 def add_trailing_slash(path):
     """If path does not end with /, add it and return."""
 
@@ -71,6 +72,7 @@ empty_quickstats = {'fuzzy': 0,
                     'untranslatedsourcewords': 0,
                     'errors': 0}
 
+
 def statssum(queryset, empty_stats=empty_quickstats):
     totals = empty_stats
     for item in queryset:
@@ -83,6 +85,7 @@ def statssum(queryset, empty_stats=empty_quickstats):
 empty_completestats = {u'isfuzzy': 0,
                        'errors': 0}
 
+
 def completestatssum(queryset, empty_stats=empty_completestats):
     totals = empty_stats
     for item in queryset:
@@ -91,6 +94,7 @@ def completestatssum(queryset, empty_stats=empty_completestats):
         except:
             totals['errors'] += 1
     return totals
+
 
 def calculate_stats(units):
     """calculate translation statistics for given unit queryset"""

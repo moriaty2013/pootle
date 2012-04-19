@@ -34,6 +34,7 @@ settings_map = {
 
 defaults = generate_defaults(settings_map)
 
+
 def load_site_config():
     """Sets up the SiteConfiguration, provides defaults and syncs settings."""
     try:

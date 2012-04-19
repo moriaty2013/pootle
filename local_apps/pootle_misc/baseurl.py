@@ -26,6 +26,7 @@ import urllib
 from django.conf import settings
 from django.http import HttpResponseRedirect
 
+
 def l(path):
     """ filter urls adding base_path prefix if required """
     if path and path.startswith('/'):
@@ -34,13 +35,16 @@ def l(path):
         return base_url + path
     return path
 
+
 def abs_l(path):
     """ filter paths adding full url prefix if required """
     return settings.BASE_URL + path
 
+
 def m(path):
     """ filter urls adding media url prefix if required """
     return l(settings.MEDIA_URL + path)
+
 
 def redirect(url, **kwargs):
     if os.name == 'nt':

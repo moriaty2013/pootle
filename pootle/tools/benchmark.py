@@ -27,6 +27,7 @@ import os
 import profile
 import pstats
 
+
 class PootleBenchmarker:
     """class to aid in benchmarking pootle"""
     StoreClass = store_file.store_file

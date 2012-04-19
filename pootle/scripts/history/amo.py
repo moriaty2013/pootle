@@ -26,11 +26,13 @@ try:
 except:
     pass
 
+
 def _getfiles(file):
     mainfile = os.path.join(os.path.split(file)[0], "messages.po")
     combinedfile = os.path.join(os.path.split(file)[0], "messages-combined.po")
     sourcefile = os.path.join(os.path.split(os.path.split(os.path.split(file)[0])[0])[0], "en_US", "LC_MESSAGES", "messages.po")
     return (combinedfile, mainfile, sourcefile)
+
 
 def initialize(projectdir, languagecode):
     """The first parameter is the path to the project directory, including
@@ -53,6 +55,7 @@ def initialize(projectdir, languagecode):
 
     # build .po files from the .thtml files in /pages/
     _init_pages(projectroot, languagecode)
+
 
 def _init_pages(projectroot, languagecode):
     """Initialize localizable pages
@@ -83,6 +86,7 @@ def _init_pages(projectroot, languagecode):
 
         template.close()
         output.close()
+
 
 def _tidy_page(path):
     """Read a page, run it through tidy, and create a temporary output file.
@@ -142,6 +146,7 @@ def precommit(committedfile, author, message):
         return [mainfile]
     return []
 
+
 def postcommit(committedfile, success):
     if os.path.basename(committedfile) == "messages.po":
         logger = logging.getLogger('scripts.amo')
@@ -152,6 +157,7 @@ def postcommit(committedfile, success):
         # Recreate messages-combined.po
         logger.debug("Converting amo %s to %s with template %s" % (sourcefile, combinedfile, mainfile))
         monopo2po.convertpo(open(sourcefile, "r"), open(combinedfile, "w"), open(mainfile, "r"))
+
 
 def preupdate(updatedfile):
     if os.path.basename(updatedfile) == "messages-combined.po":
@@ -164,6 +170,7 @@ def preupdate(updatedfile):
         logger.debug("Updating %s", mainfile)
         return mainfile
     return ""
+
 
 def postupdate(updatedfile):
     logger = logging.getLogger('scripts.amo')

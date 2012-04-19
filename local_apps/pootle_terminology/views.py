@@ -28,6 +28,7 @@ from pootle_app.views.language.view import get_translation_project
 from pootle_app.views.admin import util
 from pootle_store.models import Store, Unit, PARSED, LOCKED
 
+
 def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, filecounts):
     termunit = Unit()
     termunit.source = term
@@ -46,6 +47,7 @@ def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, fil
         termunit.addnote("(poterminology) %s (%d)\n" % (filename, count), 'translator')
     return termunit
 
+
 def get_terminology_filename(translation_project):
     try:
         # see if a terminology store already exists
@@ -57,6 +59,7 @@ def get_terminology_filename(translation_project):
         # but to avoid confusion we will not use monolingual extensions
         return 'pootle-terminology.po'
     return 'pootle-terminology.' + translation_project.project.localfiletype
+
 
 @commit_on_success
 @get_translation_project
@@ -155,6 +158,7 @@ def manage_store(request, template_vars, language, term_store):
     return util.edit(request, 'terminology/manage.html', Unit, template_vars, None, None,
                      queryset=term_store.units, can_delete=True, form=TermUnitForm,
                      exclude=['state', 'target_f', 'id', 'translator_comment'])
+
 
 @get_translation_project
 @util.has_permission('administrate')

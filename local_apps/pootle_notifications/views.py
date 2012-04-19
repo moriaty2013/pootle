@@ -35,6 +35,7 @@ from pootle_profile.models import get_profile
 
 from pootle_notifications.models import Notice
 
+
 def view(request, path):
     #FIXME: why do we have leading and trailing slashes in pootle_path?
     pootle_path = '/%s' % path
@@ -69,6 +70,7 @@ def view(request, path):
 
     return render_to_response('notices.html', template_vars, context_instance=RequestContext(request))
 
+
 def directory_to_title(directory):
     """figures out if directory refers to a Language or
     TranslationProject and returns appropriate string for use in
@@ -89,6 +91,7 @@ def directory_to_title(directory):
         return _('News for the %(project)s project in %(language)s', trans_vars)
     return _('News for %(path)s',
              {'path': directory.pootle_path})
+
 
 def handle_form(request, current_directory):
     class NoticeForm(ModelForm):

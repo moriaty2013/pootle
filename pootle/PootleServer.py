@@ -32,6 +32,7 @@ from django.core.management import call_command
 from translate import __version__ as toolkitversion
 from translate.misc import wsgi
 
+
 class PootleOptionParser(optparse.OptionParser):
 
     def __init__(self):
@@ -64,6 +65,7 @@ class PootleOptionParser(optparse.OptionParser):
             help='The TCP port on which the server should listen for new connections.',
             )
 
+
 def checkversions():
     """Checks that version dependencies are met."""
     # Old versions of the toolkit might not have .build or .sver, so we try to
@@ -72,6 +74,7 @@ def checkversions():
         raise RuntimeError('requires Translate Toolkit version >= 1.5.0.  Current installed version is: %s'
                             % getattr(toolkitversion, "sver", toolkitversion.ver))
 
+
 def display_versions():
     from pootle.__version__ import sver as pootle_ver
     from translate.__version__ import sver as translate_ver
@@ -79,6 +82,7 @@ def display_versions():
     print "Pootle %s" % pootle_ver
     print "Translate Toolkit %s" % translate_ver
     print "Django %s" % django_ver()
+
 
 def run_pootle(options, args):
     """Run the requested action."""
@@ -90,6 +94,7 @@ def run_pootle(options, args):
         call_command('refresh_stats')
     elif options.action == 'version':
         display_versions()
+
 
 def main():
     # run the web server

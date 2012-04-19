@@ -32,7 +32,11 @@ from pootle_profile.models import PootleProfile
 
 
 ### Language
+
+
 LANGCODE_RE = re.compile("^[a-z]{2,}([_-][a-z]{2,})*(@[a-z0-9]+)?$", re.IGNORECASE)
+
+
 class MyLanguageAdminForm(forms.ModelForm):
     def clean_code(self):
         if not self.cleaned_data['code'] == 'templates' and not LANGCODE_RE.match(self.cleaned_data['code']):
@@ -58,12 +62,14 @@ admin.site.register(Language, LanguageAdmin)
 
 ### Project
 
+
 class MyProjectAdminForm(forms.ModelForm):
 
     def clean_code(self):
         if re.search("[^a-zA-Z0-9_]", self.cleaned_data['code']):
             raise forms.ValidationError(_('Project code may only contain letters, numbers and _'))
         return self.cleaned_data["code"]
+
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('code', 'fullname', 'description', 'localfiletype')
@@ -88,8 +94,10 @@ admin.site.register(Project, ProjectAdmin)
 
 admin.site.unregister(User)
 
+
 class PootleProfileInline(admin.StackedInline):
     model = PootleProfile
+
 
 class MyUserAdmin(UserAdmin):
     inlines = [PootleProfileInline]

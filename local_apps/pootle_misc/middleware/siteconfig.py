@@ -43,6 +43,7 @@ DEFAULT_TT_BUILDVERSION = 12005
    we'll assume db represents version 1.7.0 if no build version is stored.
 """
 
+
 class SiteConfigMiddleware(object):
     """
     This middleware does two things, it reload djblet siteconfigs on

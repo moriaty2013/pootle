@@ -26,6 +26,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms.models import BaseModelFormSet
 
+
 @util.user_is_admin
 def view(request):
     model_args = {}
@@ -35,6 +36,7 @@ def view(request):
     return util.edit(request, 'admin/admin_general_users.html', User, model_args,
                fields=('username', 'first_name', 'last_name', 'email', 'is_active', 'is_superuser'),
                formset=BaseUserFormSet, queryset=User.objects.hide_defaults().order_by('username'), can_delete=True)
+
 
 class BaseUserFormSet(BaseModelFormSet):
     """This formset deals with user admininistration. We have to add a

@@ -45,6 +45,7 @@ from pootle_language.models    import Language
 from pootle_app.models.directory   import Directory
 from pootle_app.models.permissions import check_permission
 
+
 class TranslationProjectNonDBState(object):
     def __init__(self, parent):
         self.parent = parent
@@ -67,18 +68,22 @@ def create_translation_project(language, project):
         except IndexError:
             return None
 
+
 def scan_translation_projects():
     for language in Language.objects.iterator():
         for project in Project.objects.iterator():
             create_translation_project(language, project)
 
+
 class VersionControlError(Exception):
     pass
+
 
 class TranslationProjectManager(RelatedManager):
     def get_by_natural_key(self, pootle_path):
         #FIXME: should we use Language and Project codes instead?
         return self.get(pootle_path=pootle_path)
+
 
 class TranslationProject(models.Model):
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE, settings.PARSE_POOL_CULL_FREQUENCY)
@@ -681,6 +686,7 @@ def stats_message(version, stats):
     return "%s: %d of %d messages translated (%d fuzzy)." % \
            (version, stats.get("translated", 0), stats.get("total", 0), stats.get("fuzzy", 0))
 
+
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw:
         return
@@ -688,6 +694,7 @@ def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     for language in Language.objects.iterator():
         create_translation_project(language, instance)
 post_save.connect(scan_languages, sender=Project)
+
 
 def scan_projects(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw:

@@ -27,6 +27,7 @@ from django.template import RequestContext
 from pootle_misc.siteconfig import load_site_config
 from pootle_app.forms import GeneralSettingsForm
 
+
 @user_is_admin
 def view(request):
     siteconfig = load_site_config()

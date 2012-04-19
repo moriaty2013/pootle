@@ -204,6 +204,7 @@ msgstr "2adim"
         #        self.assertEqual(unit.source, u'obsolete')
         #        self.assertEqual(unit.target, u'2adim')
 
+
 class PrefixGnuTests(GnuTests):
     """tests for Gnu style with prefix projects"""
 
@@ -480,6 +481,7 @@ X-Generator: Pootle Tests
         self.assertEqual(unit.target, u'2adim')
         self.assertFalse(unit.isobsolete())
 
+
 class CsvTests(XliffTests):
     """Tests for CSV projects"""
     template_text = r'''id, source, target, location, fuzzy
@@ -498,6 +500,7 @@ class CsvTests(XliffTests):
     def test_plural(self):
         # csv files don't do plurals, suppress
         pass
+
 
 class TsTests(XliffTests):
     """Tests for Qt ts projects"""
@@ -531,6 +534,7 @@ class TsTests(XliffTests):
 </TS>
 '''
     ext = 'ts'
+
 
 class PropTests(XliffTests):
     """tests for java properties projects"""
@@ -567,6 +571,7 @@ new=%d new
     def test_plural(self):
         # monolingual files don't do plurals, suppress
         pass
+
 
 class SrtTests(PropTests):
     """Tests for subtitles projects"""

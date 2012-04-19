@@ -24,6 +24,7 @@ from pootle_app.models.directory import Directory
 from pootle_app.views.admin.util import user_is_admin
 from pootle_app.views.admin.permissions import admin_permissions
 
+
 @user_is_admin
 def view(request):
 

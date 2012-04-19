@@ -26,6 +26,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle_misc.util import apply_markup_filter
 
+
 class LegalPage(models.Model):
 
     active = models.BooleanField(_('Active'),

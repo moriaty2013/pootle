@@ -26,6 +26,7 @@ import logging
 from django.conf import settings
 from django.contrib.auth.models import User
 
+
 class LdapBackend(object):
     """
     This is a Django authentication module which implements LDAP

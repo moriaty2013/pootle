@@ -39,12 +39,14 @@ def make_directory_pathlinks(request, project_url, url, links):
     else:
         return list(reversed(links))
 
+
 def make_directory_actions(request, links_required=None):
     directory = request.translation_project.directory
     if links_required == 'translate':
         return directory_translate_links(request, directory)
     elif links_required == 'review':
         return directory_review_links(request, directory)
+
 
 def make_navbar_path_dict(request, path_links=None):
     def make_admin(request):
@@ -63,6 +65,7 @@ def make_navbar_path_dict(request, path_links=None):
         'project':   {'href': dispatch.open_translation_project(request, language.code, project.code),
                       'text': project.fullname},
         'pathlinks': path_links}
+
 
 def make_directory_navbar_dict(request, directory, links_required=None, terminology=False):
     result = item_dict.make_directory_item(request, directory, links_required, terminology)

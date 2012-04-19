@@ -58,9 +58,11 @@ INSTALL_DATA_DIR = 'share/pootle'
 INSTALL_DOC_DIR = 'share/doc/pootle'
 INSTALL_WORKING_DIR = '/var/lib/pootle'
 
+
 ###############################################################################
 # HELPER FUNCTIONS
 ###############################################################################
+
 
 def collect_options():
     data_files = [
@@ -110,6 +112,7 @@ def collect_options():
     }
     return options
 
+
 def expand_tree_globs(root, subdirs, globs):
     if root.endswith('/'):
         root = root[:-1]
@@ -127,6 +130,7 @@ def expand_tree_globs(root, subdirs, globs):
                     if glob.glob(path.join(root, curdir, d, g)):
                         dirglobs.append(path.join(curdir, d, g))
     return dirglobs
+
 
 # The function below was shamelessly copied from setuptools
 def find_packages(where='.', exclude=()):
@@ -153,6 +157,7 @@ def find_packages(where='.', exclude=()):
         from fnmatch import fnmatchcase
         out = [item for item in out if not fnmatchcase(item, pat)]
     return out
+
 
 def list_tree(target_base, root):
     tree = []

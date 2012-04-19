@@ -20,12 +20,14 @@
 
 import urllib
 
+
 def strip_trailing_slash(path):
     """If path ends with a /, strip it and return the stripped version."""
     if len(path) > 0 and path[-1] == '/':
         return path[:-1]
     else:
         return path
+
 
 def add_trailing_slash(path):
     """If path does not end with /, add it and return."""
@@ -42,11 +44,13 @@ def url_split(path):
     except ValueError:
         return '', path
 
+
 def split_trailing_slash(p):
     if p[-1] == u'/':
         return p[:-1], p[-1]
     else:
         return p, u''
+
 
 def get_relative(ref_path, abs_path):
     def get_last_agreement(ref_chain, abs_chain):
@@ -72,15 +76,18 @@ def get_relative(ref_path, abs_path):
     else:
         return result + abs_slash
 
+
 def parent(url):
     parent_part, _child_part = url_split(url)
     return parent_part
+
 
 def make_url(url, args={}):
     if len(args) > 0:
         return u'%s?%s' % (url, urllib.urlencode(sorted(args.iteritems())))
     else:
         return url
+
 
 def basename(url):
     _parent_part, child_part = url_split(url)

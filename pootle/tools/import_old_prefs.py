@@ -24,6 +24,7 @@ import sys
 import types
 import logging
 
+
 def main():
     '''Read sys.argv for configuration, and perform the imports.'''
     if len(sys.argv) != 3:
@@ -37,6 +38,7 @@ def main():
     parsed_users = prefs.PrefsParser(usersfile)
     set_up_db_then_import_languages_then_users(parsed_oldprefs, parsed_users)
 
+
 def set_up_db_then_import_languages_then_users(oldprefs, parsed_users):
     '''oldprefs and parsed_users are jToolkit prefs.PrefsParser
     objects.'''
@@ -47,11 +49,13 @@ def set_up_db_then_import_languages_then_users(oldprefs, parsed_users):
     import_pending()
     import_units()
 
+
 def import_units():
     """import units from files"""
     for store in Store.objects.filter(state=NEW).iterator():
         logging.info("Importing strings from %s", store.pootle_path.encode("utf-8"))
         store.getquickstats()
+
 
 def import_pending():
     """import stores with suggestions in pending files"""
@@ -64,6 +68,7 @@ def import_pending():
             # now import suggestions
             logging.info("Importing suggestions from %s", store.pootle_path.encode('utf-8'))
             store.import_pending()
+
 
 def _get_attribute(data, name, attribute, unicode_me=True,
                    default='', prefix='Pootle.languages.'):
@@ -81,6 +86,7 @@ def _get_attribute(data, name, attribute, unicode_me=True,
             value = raw_value
     return value
 
+
 def try_type(try_me, value):
     '''This gentle type-converter should work fine for int and bool.
     It would not work for unicode, though.'''
@@ -97,6 +103,7 @@ def try_type(try_me, value):
     assert type(value) == try_me
     return value
 
+
 @commit_on_success
 def import_sitesettings(parsed_data):
     data = parsed_data.__root__._assignments
@@ -104,6 +111,7 @@ def import_sitesettings(parsed_data):
     siteconfig.set('TITLE', data.get('Pootle.title'))
     siteconfig.set('DESCRIPTION', data.get('Pootle.description'))
     siteconfig.save()
+
 
 @commit_on_success
 def import_languages(parsed_data):
@@ -144,6 +152,7 @@ def import_languages(parsed_data):
         db_lang.specialchars = _get_attribute(data, lang, 'specialchars')
         logging.info("Creating language %s", db_lang)
         db_lang.save()
+
 
 @commit_on_success
 def import_projects(parsed_data):
@@ -200,10 +209,12 @@ def import_projects(parsed_data):
         logging.info("Creating project %s", db_proj)
         db_proj.save()
 
+
 def _get_user_attribute(data, user_name, attribute, unicode_me=True,
                         default=''):
     return _get_attribute(data, user_name, attribute, unicode_me, default,
                           prefix='')
+
 
 def create_database_user(data, user_name):
     # django stupidly forces first name, last name model on us.  even
@@ -277,6 +288,7 @@ def create_database_user(data, user_name):
 
     return user, profile
 
+
 def augment_list(profile, data, model, user_property, property_name):
     """Enumerate the list of codes (language or project codes, for
     example) in property named 'user_property' in the jToolkit prefs
@@ -313,6 +325,7 @@ def augment_list(profile, data, model, user_property, property_name):
                         "Failed to add %(username)s to %(property_name)s ID "\
                             "%(code)s; you probably need to create it", log_args)
 
+
 def as_unicode(string):
     if isinstance(string, unicode):
         return string
@@ -320,6 +333,7 @@ def as_unicode(string):
         return string.decode('utf-8')
     else:
         raise Exception('You must pass a string type')
+
 
 @commit_on_success
 def import_users(parsed_users):

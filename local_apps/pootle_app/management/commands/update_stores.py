@@ -25,6 +25,7 @@ import logging
 
 from pootle_app.management.commands import PootleCommand
 
+
 class Command(PootleCommand):
     option_list = PootleCommand.option_list + (
         make_option('--keep', action='store_true', dest='keep', default=False,

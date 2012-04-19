@@ -28,9 +28,11 @@ from pootle_app.models.permissions import PermissionSet, get_permission_contentt
 from pootle_app.views.admin import util
 from pootle_misc.forms import GroupedModelChoiceField
 
+
 class PermissionFormField(forms.ModelMultipleChoiceField):
     def label_from_instance(self, instance):
         return _(instance.name)
+
 
 def admin_permissions(request, current_directory, template, context):
     content_type = get_permission_contenttype()

@@ -31,6 +31,7 @@ try:
 except ImportError:
     pass
 
+
 class ProfilerMiddleware(object):
     def process_view(self, request, callback, callback_args, callback_kwargs):
         if not sys.version_info < (2, 5) and settings.DEBUG and 'prof' in request.GET:

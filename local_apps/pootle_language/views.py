@@ -38,8 +38,10 @@ from pootle_app.models.permissions import get_matching_permissions, check_permis
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_profile.models import get_profile
 
+
 def limit(query):
     return query[:5]
+
 
 def get_last_action(translation_project):
     try:
@@ -47,6 +49,7 @@ def get_last_action(translation_project):
             translation_project=translation_project).latest().as_html()
     except Submission.DoesNotExist:
         return ''
+
 
 def make_project_item(translation_project):
     project = translation_project.project
@@ -68,6 +71,7 @@ def make_project_item(translation_project):
         info['errortooltip'] = ungettext('Error reading %d file', 'Error reading %d files', errors, errors)
     info.update(stats_descriptions(projectstats))
     return info
+
 
 def language_index(request, language_code):
     language = get_object_or_404(Language, code=language_code)
@@ -99,6 +103,7 @@ def language_index(request, language_code):
         'instancetitle': pagelayout.get_title(),
         }
     return render_to_response("language/language_index.html", templatevars, context_instance=RequestContext(request))
+
 
 def language_admin(request, language_code):
     # Check if the user can access this view

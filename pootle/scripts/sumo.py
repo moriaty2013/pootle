@@ -12,6 +12,7 @@ import subprocess
 from django.conf import settings
 from translate.convert import tiki2po, po2tiki
 
+
 def initialize(projectdir, languagecode):
     """The first paramater is the path to the project directory.  It's up to this
     script to know any internal structure of the directory"""
@@ -31,6 +32,7 @@ def initialize(projectdir, languagecode):
     print "Initializing %s to %s" % (tikifile, pofile)
     tiki2po.converttiki(open(tikifile, "r"), open(pofile, "w"))
 
+
 def precommit(committedfile, author, message):
     if os.path.basename(committedfile) == "language.po":
 
@@ -45,6 +47,7 @@ def precommit(committedfile, author, message):
         return [tikifile]
     return []
 
+
 def postcommit(committedfile, success):
     if os.path.basename(committedfile) == "language.po":
 
@@ -54,6 +57,7 @@ def postcommit(committedfile, success):
         # Recreate .po with any new strings in tikifile
         print "Converting tiki to po:  %s to %s" % (tikifile, committedfile)
         tiki2po.converttiki(open(tikifile, "r"), open(committedfile, "w"))
+
 
 def preupdate(updatedfile):
     if os.path.basename(updatedfile) == "language.po":
@@ -65,6 +69,7 @@ def preupdate(updatedfile):
         print "Updating %s" % tikifile
         return tikifile
     return ""
+
 
 def postupdate(updatedfile):
     # Get the files we'll be using

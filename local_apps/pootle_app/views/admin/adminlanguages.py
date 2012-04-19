@@ -24,6 +24,7 @@ from pootle_app.views.admin import util
 from pootle_language.models import Language
 from pootle_app.admin import MyLanguageAdminForm
 
+
 @util.user_is_admin
 def view(request):
     model_args = {}

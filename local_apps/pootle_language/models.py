@@ -30,9 +30,11 @@ from pootle_store.util import statssum
 from pootle_store.models import Unit
 from pootle_app.lib.util import RelatedManager
 
+
 class LanguageManager(RelatedManager):
     def get_by_natural_key(self, code):
         return self.get(code=code)
+
 
 class Language(models.Model):
     objects = LanguageManager()

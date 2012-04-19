@@ -23,6 +23,7 @@ from pootle_language.models import Language
 from pootle_translationproject.models import TranslationProject
 from pootle_profile.models import get_profile
 
+
 class PootlePathMiddleware(object):
     """populates request with objects relevant to current pootle_path"""
     def process_request(self, request):

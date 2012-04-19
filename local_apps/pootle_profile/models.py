@@ -34,6 +34,7 @@ from pootle_misc.util import cached_property
 
 from translate.misc.hash import md5_f
 
+
 class PootleUserManager(UserManager):
     """A manager class which is meant to replace the manager class for the User model. This manager
     hides the 'nobody' and 'default' users for normal queries, since they are special users. Code
@@ -51,6 +52,7 @@ class PootleUserManager(UserManager):
 # to get the desired functionality.
 User.objects.__class__ = PootleUserManager
 
+
 class PootleProfileManager(models.Manager):
     def get_query_set(self):
         return super(PootleProfileManager, self).get_query_set().select_related(
@@ -58,6 +60,7 @@ class PootleProfileManager(models.Manager):
 
     def get_by_natural_key(self, username):
         return self.get(user__username=username)
+
 
 class PootleProfile(models.Model):
     objects = PootleProfileManager()
@@ -164,6 +167,7 @@ def create_pootle_profile(sender, instance, **kwargs):
         profile.save()
 
 post_save.connect(create_pootle_profile, sender=User)
+
 
 def get_profile(user):
     """Return the PootleProfile associated with a user.

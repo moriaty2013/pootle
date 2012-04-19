@@ -26,9 +26,11 @@ from django.db import transaction
 from django.core.management.base import NoArgsCommand
 from django.contrib.auth.models import User
 
+
 class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         create_default_db()
+
 
 def create_default_db():
     """This creates the default database to get a working Pootle installation.
@@ -54,6 +56,7 @@ def create_default_db():
                 transaction.commit()
             transaction.leave_transaction_management()
 
+
 def create_default_projects():
     """Create the default projects that we host. You might want to add your
     projects here, although you can also add things through the web interface
@@ -78,6 +81,7 @@ def create_default_projects():
     tutorial.localfiletype = "po"
     tutorial.treestyle = "auto"
     tutorial.save()
+
 
 def create_default_languages():
     """Create the default languages. We afford this priviledge to languages

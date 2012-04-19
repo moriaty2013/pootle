@@ -24,8 +24,12 @@ from django.utils.safestring import mark_safe
 
 class FormError(ValidationError):
     pass
+
+
 class SubmitError(FormError):
     pass
+
+
 class HandlerError(FormError):
     pass
 

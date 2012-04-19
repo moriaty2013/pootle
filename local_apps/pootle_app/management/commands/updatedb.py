@@ -31,9 +31,11 @@ from pootle_misc import siteconfig
 from pootle_misc.middleware.siteconfig import DEFAULT_BUILDVERSION
 from pootle.__version__ import build as code_buildversion
 
+
 class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         update_db()
+
 
 def update_db():
     # get current database buildversion

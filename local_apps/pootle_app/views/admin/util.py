@@ -41,6 +41,7 @@ def user_is_admin(f):
             return f(request, *args, **kwargs)
     return decorated_f
 
+
 def has_permission(permission_code):
     def wrap_f(f):
         def decorated_f(request, path_obj, *args, **kwargs):
@@ -144,6 +145,7 @@ def form_set_as_table(formset, link=None, linkfield='code'):
         result.append('</td>\n')
         result.append('</tr>\n')
     return u''.join(result)
+
 
 def process_modelformset(request, model_class, queryset, **kwargs):
     """With the Django model class 'model_class' and the Django form class 'form_class',

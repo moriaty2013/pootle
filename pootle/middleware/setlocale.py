@@ -24,6 +24,7 @@ import logging
 from django.utils import translation
 from django.conf import settings
 
+
 class SetLocale(object):
     """Sets python locale for each request."""
     def process_request(self, request):

@@ -36,9 +36,11 @@ from pootle_misc.util import getfromcache
 from pootle_misc.baseurl import l
 from pootle_app.lib.util import RelatedManager
 
+
 class ProjectManager(RelatedManager):
     def get_by_natural_key(self, code):
         return self.get(code=code)
+
 
 class Project(models.Model):
     objects = ProjectManager()

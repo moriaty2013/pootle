@@ -30,6 +30,7 @@ from pootle_translationproject.models import create_translation_project
 from pootle_language.models import Language
 from pootle_project.models import Project
 
+
 def does_not_exists(path):
     if os.path.exists(path):
         return False
@@ -41,6 +42,7 @@ def does_not_exists(path):
         if e.errno == errno.ENOENT:
             # explicit no such file or directory
             return True
+
 
 class Command(PootleCommand):
     option_list = PootleCommand.option_list + (

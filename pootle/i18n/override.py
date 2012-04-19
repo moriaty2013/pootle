@@ -33,6 +33,7 @@ from pootle.i18n import gettext
 
 from translate.lang import data
 
+
 def find_languages(locale_path):
     """generates supported languages list from mo directory"""
     dirs = os.listdir(locale_path)
@@ -84,6 +85,7 @@ def get_lang_from_session(request, supported):
             return lang_code
     return None
 
+
 def get_lang_from_cookie(request, supported):
     """See if the user's browser sent a cookie with a her preferred
     language."""
@@ -93,6 +95,7 @@ def get_lang_from_cookie(request, supported):
         return lang_code
     else:
         return None
+
 
 def get_lang_from_prefs(request, supported):
     """If the current user is logged in, get her profile model object
@@ -165,6 +168,7 @@ def translation_dummy(language):
     trans_real._translations[language] = dummytrans
     return dummytrans
 
+
 def override_gettext(real_translation):
     """replace django's translation functions with safe versions"""
     translation.gettext = real_translation.gettext
@@ -175,6 +179,7 @@ def override_gettext(real_translation):
     translation.ugettext_lazy = lazy(real_translation.ugettext, unicode)
     translation.ngettext_lazy = lazy(real_translation.ngettext, str)
     translation.ungettext_lazy = lazy(real_translation.ungettext, unicode)
+
 
 def get_language_bidi():
     """override for django's get_language_bidi that's aware of more

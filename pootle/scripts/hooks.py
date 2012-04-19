@@ -2,6 +2,7 @@
 
 import logging
 
+
 def hook(project, hooktype, file, *args, **kwargs):
     """
     project should be the projectcode of any project.

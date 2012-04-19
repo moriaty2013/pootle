@@ -38,6 +38,7 @@ from pootle_misc import siteconfig
 from pootle.__version__ import build as code_buildversion
 from translate.__version__ import build as code_tt_buildversion
 
+
 def create_essential_users():
     """Create default and nobody User instances required for pootle permission system"""
     # The nobody user is used to represent an anonymous user in cases where
@@ -65,6 +66,7 @@ def create_essential_users():
         default.set_unusable_password()
         default.save()
 
+
 def create_pootle_permissions():
     """define Pootle's directory level permissions"""
     pootle_content_type, created = ContentType.objects.get_or_create(app_label="pootle_app", model="directory")
@@ -86,6 +88,7 @@ def create_pootle_permissions():
                                                     content_type=pootle_content_type, codename="administrate")
     commit, created = Permission.objects.get_or_create(name=_("Can commit to version control"),
                                                        content_type=pootle_content_type, codename="commit")
+
 
 def create_pootle_permission_sets():
     """Create the default permission set for the anonymous (non-logged in) user
@@ -124,15 +127,18 @@ def create_pootle_permission_sets():
         permission_set.positive_permissions = [view]
         permission_set.save()
 
+
 def require_english():
     en, created = Language.objects.get_or_create(code="en", fullname=u"English",
                                                  nplurals=2, pluralequation="(n != 1)")
     return en
 
+
 def create_root_directory():
     """Create root Directory item."""
     root, created = Directory.objects.get_or_create(name='')
     projects, created = Directory.objects.get_or_create(name='projects', parent=root)
+
 
 def create_template_language():
     """template language is used to give users access to the untranslated template files"""
@@ -149,6 +155,7 @@ def create_terminology_project():
             source_language=en,
             checkstyle="terminology",
     )
+
 
 def post_syncdb_handler(sender, created_models, **kwargs):
     try:
@@ -177,13 +184,17 @@ def post_syncdb_handler(sender, created_models, **kwargs):
     config.save()
 post_syncdb.connect(post_syncdb_handler, sender=pootle_app.models)
 
+
 permission_queryset = None
+
+
 def fix_permission_content_type_pre(sender, instance, **kwargs):
     if instance.name == 'pootle' and instance.model == "":
         logging.debug("Fixing permissions content types")
         global permission_queryset
         permission_queryset = [permission for permission in Permission.objects.filter(content_type=instance)]
 pre_delete.connect(fix_permission_content_type_pre, sender=ContentType)
+
 
 def fix_permission_content_type_post(sender, instance, **kwargs):
     global permission_queryset

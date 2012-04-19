@@ -22,6 +22,7 @@
 
 from django.utils.translation import ugettext_lazy as _
 
+
 def get_supported_formats():
     formats = []
     # Bilingual formats
@@ -96,9 +97,11 @@ def get_supported_formats():
 
 supported_formats = get_supported_formats()
 
+
 def get_filetype_choices():
     return [(format[0], format[1]) for format in supported_formats]
 filetype_choices = get_filetype_choices()
+
 
 def get_factory_classes():
     classes = dict(((format[0], format[2]) for format in supported_formats))
@@ -107,6 +110,7 @@ def get_factory_classes():
     classes['pot'] = pofile
     return classes
 factory_classes = get_factory_classes()
+
 
 def is_monolingual(klass):
     classes = dict(((format[2], format[3]) for format in supported_formats))

@@ -31,7 +31,10 @@ try:
 except ImportError:
     clean_html = lambda text: text
 
+
 ESCAPE_RE = re.compile('<[^<]*?>|\\\\|\r\n|[\r\n\t&<>]')
+
+
 def fancy_escape(text):
     """replace special chars with entities, and highlight xml tags and
     whitespaces"""
@@ -54,7 +57,10 @@ def fancy_escape(text):
             return html_highlight % match.group()[1:-1]
     return ESCAPE_RE.sub(replace, text)
 
+
 WHITESPACE_RE = re.compile('^ +| +$|[\r\n\t] +| {2,}')
+
+
 def fancy_spaces(text):
     """Highlight spaces to make them easily visible"""
     def replace(match):
@@ -64,10 +70,12 @@ def fancy_spaces(text):
         return match.group()[0] + fancy_space * (len(match.group()) - 1)
     return WHITESPACE_RE.sub(replace, text)
 
+
 def clean_wrapper(text):
     """wrapper around lxml's html cleaner that returns SafeStrings for
     immediate rendering in templates"""
     return mark_safe(clean_html(text))
+
 
 def fancy_highlight(text):
     return mark_safe(fancy_spaces(fancy_escape(text)))

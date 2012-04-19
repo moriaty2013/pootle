@@ -38,6 +38,7 @@ from django.utils.translation import ugettext as _
 from django.utils import simplejson
 from django.conf import settings
 
+
 # MathCaptchaForm Copyright (c) 2007, Dima Dogadaylo (www.mysoftparade.com)
 # Copied from http://djangosnippets.org/snippets/506/
 # GPL compatible According to djangosnippets terms and conditions

@@ -35,6 +35,7 @@ from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 from pootle_misc.dbinit import stats_start, stats_language, stats_project, stats_end
 
+
 def flush_quality_checks():
     """reverts stores to unchecked state. if store has false positives
     marked updates quality checks keeping false postivies intact"""
@@ -51,6 +52,7 @@ def flush_quality_checks():
             store.state = PARSED
             store.save()
 
+
 def save_toolkit_version(build=None):
     from pootle_misc import siteconfig
     if not build:
@@ -61,6 +63,7 @@ def save_toolkit_version(build=None):
     config.save()
     logging.info("Database now at Toolkit build %d" % build)
 
+
 def save_pootle_version(build=None):
     from pootle_misc import siteconfig
     if not build:
@@ -70,6 +73,7 @@ def save_pootle_version(build=None):
     config.set('BUILDVERSION', build)
     config.save()
     logging.info("Database now at Pootle build %d" % build)
+
 
 def header(db_buildversion):
     text = """
@@ -111,6 +115,7 @@ def header(db_buildversion):
            'msg': _('Database tables are currently at build version %d. Pootle will now update the database.', db_buildversion)}
     return text
 
+
 def syncdb():
     text = u"""
     <p>%s</p>
@@ -118,6 +123,7 @@ def syncdb():
     logging.info("Creating missing database tables")
     call_command('syncdb', interactive=False)
     return text
+
 
 def update_permissions_20030():
     text = """
@@ -134,6 +140,7 @@ def update_permissions_20030():
     contenttype.save()
     save_pootle_version(20030)
     return text
+
 
 def update_tables_21000():
     text = u"""
@@ -171,6 +178,7 @@ def update_tables_21000():
     # We shouldn't do save_pootle_version(21000) yet - more to do below
     return text
 
+
 def update_qualitychecks_21040():
     text = """
     <p>%s</p>
@@ -179,6 +187,7 @@ def update_qualitychecks_21040():
     flush_quality_checks()
     save_pootle_version(21040)
     return text
+
 
 def update_stats_21060():
     text = """
@@ -189,6 +198,7 @@ def update_stats_21060():
         deletefromcache(tp, ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
     save_pootle_version(21060)
     return text
+
 
 def update_ts_tt_12008():
     text = """
@@ -203,6 +213,7 @@ def update_ts_tt_12008():
     save_toolkit_version(12008)
     return text
 
+
 def update_tables_22000():
     text = u"""
     <p>%s</p>
@@ -216,6 +227,7 @@ def update_tables_22000():
     db.add_column(table_name, field.name, field)
     save_pootle_version(22000)
 
+
 def update_toolkit_version():
     text = """
     <p>%s</p>
@@ -225,12 +237,14 @@ def update_toolkit_version():
     save_toolkit_version()
     return text
 
+
 def parse_start():
     text = u"""
     <p>%s</p>
     <ul>
     """ % _('Pootle will now import all the translations into the database. It could take a long time.')
     return text
+
 
 def import_suggestions(store):
     try:
@@ -251,6 +265,7 @@ def import_suggestions(store):
         """ % _('Failed to import suggestions from %s', store.pootle_path)
     return text
 
+
 def parse_store(store):
     try:
         logging.info(u"Importing units from %s", store.real_path)
@@ -267,12 +282,14 @@ def parse_store(store):
         """ % _('Failed to import units from %s', store.pootle_path)
     return text
 
+
 def parse_end():
     text = u"""
     </ul>
     <p>%s</p>
     """ % _('All translations are now imported.')
     return text
+
 
 def footer():
     text = """
@@ -281,6 +298,7 @@ def footer():
     </body></html>
     """ % {'endmsg': _('Pootle initialized the database. You will be redirected to the front page in 10 seconds.')}
     return text
+
 
 def staggered_update(db_buildversion, tt_buildversion):
     """Update pootle database, while displaying progress report for each step"""

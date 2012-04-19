@@ -30,10 +30,14 @@ from translate.misc.multistring import multistring
 
 from pootle_store.signals import translation_file_updated
 
+
 ################# String #############################
+
 
 SEPERATOR = "__%$%__%$%__%$%__"
 PLURAL_PLACEHOLDER = "__%POOTLE%_$NUMEROUS$__"
+
+
 def list_empty(strings):
     """check if list is exclusively made of empty strings.
 
@@ -43,6 +47,7 @@ def list_empty(strings):
         if len(string) > 0:
             return False
     return True
+
 
 class MultiStringField(models.Field):
     description = "a field imitating translate.misc.multistring used for plurals"
@@ -107,6 +112,7 @@ class StoreTuple(object):
         self.store = store
         self.mod_info = mod_info
         self.realpath = realpath
+
 
 class TranslationStoreFieldFile(FieldFile):
     """FieldFile is the File-like object of a FileField, that is found in a

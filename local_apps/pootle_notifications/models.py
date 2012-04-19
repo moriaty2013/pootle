@@ -25,6 +25,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle_misc.baseurl import l
 
+
 class Notice(models.Model):
     directory = models.ForeignKey('pootle_app.Directory', db_index=True)
     message = models.TextField(_('Message'))

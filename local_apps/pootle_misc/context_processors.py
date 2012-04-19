@@ -22,6 +22,7 @@ from django.conf import settings
 
 from pootle.__version__ import sver
 
+
 def pootle_context(request):
     """exposes settings to templates"""
     #FIXME: maybe we should expose relevant settings only?

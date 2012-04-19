@@ -22,6 +22,7 @@ from translate.lang import data as langdata
 
 from django.utils import translation
 
+
 # override gettext function that handle variable errors more
 # gracefully.
 #
@@ -67,6 +68,7 @@ def tr_lang(language_name):
     """translate language name"""
     language_code = translation.to_locale(translation.get_language())
     return langdata.tr_lang(language_code)(language_name)
+
 
 def language_dir(language_code):
     """Returns whether the language is right to left"""

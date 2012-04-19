@@ -27,6 +27,7 @@ from pootle_notifications.models import Notice
 
 register = template.Library()
 
+
 @register.inclusion_tag('latest_news_snippet.html', takes_context=True)
 def render_latest_news(context, path, num):
     try:

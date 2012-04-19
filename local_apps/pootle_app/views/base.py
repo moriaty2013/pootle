@@ -20,6 +20,7 @@
 from pootle_app.lib import view_handler
 from pootle_app.views import pagelayout
 
+
 class BaseView(view_handler.View):
     def GET(self, template_vars, request):
         pagelayout.completetemplatevars(template_vars, request)

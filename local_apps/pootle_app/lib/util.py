@@ -50,6 +50,7 @@ def lazy(result_name):
         return evaluator
     return lazify
 
+
 def lazy_property(name, getter):
     def deleter(self):
         delattr(self, name)
@@ -58,6 +59,8 @@ def lazy_property(name, getter):
 
 
 from django.db import models
+
+
 class RelatedManager(models.Manager):
     """Model manager that always does full joins on relations, saves
     us lots of database queries later"""

@@ -27,6 +27,7 @@ from translate.storage import statsdb
 from pootle.tests import PootleTestCase
 from pootle_store.models import Store, Unit
 
+
 class UnitTests(PootleTestCase):
     def setUp(self):
         super(UnitTests, self).setUp()

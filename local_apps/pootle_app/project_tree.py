@@ -34,9 +34,11 @@ LANGCODE_RE = re.compile('^[a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?$', re.IGNORE
 # case insensitive match for language codes as postfix
 LANGCODE_POSTFIX_RE = re.compile('^.*?[-_.]([a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?)$', re.IGNORECASE)
 
+
 def language_match_filename(language_code, filename):
     name, ext = os.path.splitext(os.path.basename(filename))
     return langdata.languagematch(language_code, name)
+
 
 def direct_language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
@@ -48,6 +50,7 @@ def direct_language_match_filename(language_code, path_name):
         return False
     detect = LANGCODE_POSTFIX_RE.split(name)
     return len(detect) > 1 and (detect[1] == language_code or detect[1].lower() == language_code.lower())
+
 
 def match_template_filename(project, filename):
     """test if path_name might point at a template file for given
@@ -63,9 +66,11 @@ def match_template_filename(project, filename):
             return True
     return False
 
+
 def get_matching_language_dirs(project_dir, language):
     return [lang_dir for lang_dir in os.listdir(project_dir)
             if language.code == lang_dir]
+
 
 def get_non_existant_language_dir(project_dir, language, file_style, make_dirs):
     if file_style == "gnu":
@@ -78,6 +83,7 @@ def get_non_existant_language_dir(project_dir, language, file_style, make_dirs):
         else:
             raise IndexError("directory not found for language %s, project %s" % (language.code, project_dir))
 
+
 def get_or_make_language_dir(project_dir, language, file_style, make_dirs):
     matching_language_dirs = get_matching_language_dirs(project_dir, language)
     if len(matching_language_dirs) == 0:
@@ -85,6 +91,7 @@ def get_or_make_language_dir(project_dir, language, file_style, make_dirs):
         return get_non_existant_language_dir(project_dir, language, file_style, make_dirs)
     else:
         return os.path.join(project_dir, matching_language_dirs[0])
+
 
 def get_language_dir(project_dir, language, file_style, make_dirs):
     language_dir = os.path.join(project_dir, language.code)
@@ -105,8 +112,10 @@ def get_translation_project_dir(language, project_dir, file_style, make_dirs=Fal
     else:
         return get_language_dir(project_dir, language, file_style, make_dirs)
 
+
 def is_hidden_file(path):
     return path[0] == '.'
+
 
 def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
     files = []
@@ -119,6 +128,7 @@ def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
         elif os.path.isdir(full_child_path):
             dirs.append(child_path)
     return files, dirs
+
 
 def add_items(fs_items, db_items, create_db_item):
     items = []
@@ -143,6 +153,7 @@ def add_items(fs_items, db_items, create_db_item):
             logging.error('Error while adding %s:\n%s', item, e)
     return items
 
+
 def add_files(translation_project, ignored_files, ext, real_dir, db_dir, file_filter=lambda _x: True):
     files, dirs = split_files_and_dirs(ignored_files, ext, real_dir, file_filter)
     existing_stores = dict((store.name, store) for store in db_dir.child_stores.exclude(file='').iterator())
@@ -160,6 +171,7 @@ def add_files(translation_project, ignored_files, ext, real_dir, db_dir, file_fi
         fs_subdir = os.path.join(real_dir, db_subdir.name)
         add_files(translation_project, ignored_files, ext, fs_subdir, db_subdir, file_filter)
 
+
 def find_lang_postfix(filename):
     """finds the language code at end of a filename"""
     name = os.path.splitext(os.path.basename(filename))[0]
@@ -176,6 +188,7 @@ def find_lang_postfix(filename):
             name.lower().endswith('-' + code.lower()) or
             name.endswith('_' + code) or name.endswith('.' + code)):
             return code
+
 
 def translation_project_should_exist(language, project):
     """tests if there are translation files corresponding to given
@@ -209,6 +222,7 @@ def translation_project_should_exist(language, project):
 
     return False
 
+
 def get_extension(language, project):
     """file extension used for this project, returns pot if it's a po
     project and language is templates"""
@@ -218,16 +232,19 @@ def get_extension(language, project):
     else:
         return ext
 
+
 def ensure_target_dir_exists(target_path):
     target_dir = os.path.dirname(target_path)
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
+
 
 def read_original_target(target_path):
     try:
         return open(target_path, "rb")
     except:
         return None
+
 
 def convert_template(translation_project, template_store, target_pootle_path,
                      target_path, monolingual=False):

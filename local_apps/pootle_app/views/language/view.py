@@ -32,6 +32,7 @@ from pootle_app.views.language     import dispatch
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.directory import Directory
 
+
 def get_stats_headings():
     """returns a dictionary of localised headings"""
     return {
@@ -52,11 +53,13 @@ def get_stats_headings():
         "summary":                _("Summary"),
         }
 
+
 def get_translation_project(f):
     def decorated_f(request, language_code, project_code, *args, **kwargs):
         translation_project = get_object_or_404(TranslationProject, language__code=language_code, project__code=project_code)
         return f(request, translation_project, *args, **kwargs)
     return decorated_f
+
 
 def set_request_context(f):
     def decorated_f(request, translation_project, *args, **kwargs):
@@ -70,7 +73,6 @@ def set_request_context(f):
 
 
 ################################################################################
-
 @get_translation_project
 @set_request_context
 def translate(request, translation_project, dir_path=None):
@@ -81,6 +83,7 @@ def translate(request, translation_project, dir_path=None):
         request.directory = translation_project.directory
     return translate_page(request)
 
+
 @get_translation_project
 @set_request_context
 def get_failing_checks_dir(request, translation_project, dir_path):
@@ -90,6 +93,7 @@ def get_failing_checks_dir(request, translation_project, dir_path):
     else:
         pathobj = translation_project
     return get_failing_checks(request, pathobj)
+
 
 @get_translation_project
 @set_request_context
@@ -113,6 +117,7 @@ def commit_file(request, translation_project, file_path):
     store = get_object_or_404(Store, pootle_path=pootle_path)
     result = translation_project.commitpofile(request.user, store)
     return redirect(dispatch.show_directory(request, translation_project.directory.pootle_path))
+
 
 @get_translation_project
 @set_request_context

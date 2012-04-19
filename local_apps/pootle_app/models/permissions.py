@@ -28,15 +28,18 @@ from django.utils.encoding import iri_to_uri
 
 from pootle_app.lib.util import RelatedManager
 
+
 def get_permission_contenttype():
     content_type = ContentType.objects.filter(name='pootle', app_label='pootle_app', model="directory")[0]
     return content_type
+
 
 def get_pootle_permission(codename):
     # The content type of our permission
     content_type = get_permission_contenttype()
     # Get the pootle view permission
     return Permission.objects.get(content_type=content_type, codename=codename)
+
 
 def get_pootle_permissions(codenames=None):
     """gets the available rights and their localized names"""
@@ -46,6 +49,7 @@ def get_pootle_permissions(codenames=None):
     else:
         permissions = Permission.objects.filter(content_type=content_type)
     return dict((permission.codename, permission) for permission in permissions)
+
 
 def get_permissions_by_username(username, directory):
     pootle_path = directory.pootle_path
@@ -78,6 +82,7 @@ def get_permissions_by_username(username, directory):
 
     return permissions_cache[pootle_path]
 
+
 def get_matching_permissions(profile, directory):
     if profile.user.is_authenticated():
         permissions = get_permissions_by_username(profile.user.username, directory)
@@ -91,6 +96,7 @@ def get_matching_permissions(profile, directory):
     permissions = get_permissions_by_username('nobody', directory)
     return permissions
 
+
 def check_profile_permission(profile, permission_codename, directory):
     """it checks if current user has the permission the perform C{permission_codename}"""
     if profile.user.is_superuser:
@@ -98,15 +104,18 @@ def check_profile_permission(profile, permission_codename, directory):
     permissions = get_matching_permissions(profile, directory)
     return "administrate" in permissions or permission_codename in permissions
 
+
 def check_permission(permission_codename, request):
     """it checks if current user has the permission the perform C{permission_codename}"""
     if request.user.is_superuser:
         return True
     return "administrate" in request.permissions or permission_codename in request.permissions
 
+
 class PermissionSetManager(RelatedManager):
     def get_by_natural_key(self, username, pootle_path):
         return self.get(profile__user__username=username, directory__pootle_path=pootle_path)
+
 
 class PermissionSet(models.Model):
     objects = PermissionSetManager()

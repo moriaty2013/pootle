@@ -21,6 +21,7 @@ def formset_dict(data):
             new_data["form-%d-%s" % (i, key)] = value
     return new_data
 
+
 class PootleTestCase(TestCase):
     """Base TestCase class, set's up a pootle environment with a
     couple of test files and projects"""

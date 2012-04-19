@@ -21,6 +21,7 @@ warnings.filterwarnings('ignore', category=DeprecationWarning, message=r'os\.pop
 
 pythonize_re = re.compile(r'\n\s*//')
 
+
 def handle_extensions(extensions=('html',)):
     """
     organizes multiple extensions that are separated with commas or passed by
@@ -45,6 +46,7 @@ def handle_extensions(extensions=('html',)):
     # are handled in make_messages() (they are copied to file.ext.py files to
     # trick xgettext to parse them as Python files)
     return set([x for x in ext_list if x != '.py'])
+
 
 def make_messages(locale=None, domain='django', verbosity='1', all=False, extensions=None):
     """

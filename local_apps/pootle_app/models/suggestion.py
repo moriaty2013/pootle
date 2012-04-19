@@ -24,6 +24,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle_app.lib.util import RelatedManager
 
+
 class Suggestion(models.Model):
     class Meta:
         app_label = "pootle_app"

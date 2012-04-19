@@ -30,7 +30,9 @@ from pootle_store.models               import Store
 from pootle_app.views.language         import dispatch
 from pootle_misc.util import add_percentages
 
+
 ################################################################################
+
 
 def get_item_summary(request, quick_stats, path_obj):
     translated_words = quick_stats['translatedsourcewords']
@@ -58,6 +60,7 @@ def get_item_summary(request, quick_stats, path_obj):
 
     return summary
 
+
 def get_terminology_item_summary(request, quick_stats, path_obj):
     # The translated unit counts
     string_stats_text = _("%(translated)d/%(total)d terms",
@@ -75,6 +78,7 @@ def get_terminology_item_summary(request, quick_stats, path_obj):
 
     return summary
 
+
 def get_item_stats(request, quick_stats, path_obj, show_checks=False, terminology=False):
     if terminology:
         summary = get_terminology_item_summary(request, quick_stats, path_obj)
@@ -88,6 +92,7 @@ def get_item_stats(request, quick_stats, path_obj, show_checks=False, terminolog
     if show_checks and not terminology:
         result['checks'] = getcheckdetails(request, path_obj)
     return result
+
 
 def getcheckdetails(request, path_obj):
     """return a list of strings describing the results of
@@ -113,7 +118,9 @@ def getcheckdetails(request, path_obj):
         pass
     return checklinks
 
+
 ################################################################################
+
 
 def review_link(request, path_obj):
     try:
@@ -129,6 +136,7 @@ def review_link(request, path_obj):
     except IOError:
         pass
 
+
 def quick_link(request, path_obj):
     try:
         if path_obj.getquickstats()['translated'] < path_obj.getquickstats()['total']:
@@ -143,12 +151,14 @@ def quick_link(request, path_obj):
     except IOError:
         pass
 
+
 def translate_all_link(request, path_obj):
     #FIXME: what permissions to check for here?
     return {
         'class': 'translate',
         'href': dispatch.translate(path_obj),
         'text': _('Translate All')}
+
 
 def zip_link(request, path_obj):
     if check_permission('archive', request):
@@ -159,6 +169,7 @@ def zip_link(request, path_obj):
             'href': link,
             'text': text,
             }
+
 
 def xliff_link(request, path_obj):
     if path_obj.translation_project.project.localfiletype == 'xlf':
@@ -178,6 +189,7 @@ def xliff_link(request, path_obj):
         'title': tooltip,
         }
 
+
 def download_link(request, path_obj):
     if path_obj.file != "":
         if path_obj.translation_project.project.is_monolingual():
@@ -194,6 +206,7 @@ def download_link(request, path_obj):
             'title': tooltip,
             }
 
+
 def upload_link(request, path_obj):
         #FIXME: check for upload permissions
         text = _('Upload Translated File')
@@ -206,6 +219,7 @@ def upload_link(request, path_obj):
             'title': tooltip,
             }
 
+
 def commit_link(request, path_obj):
     if path_obj.abs_real_path and check_permission('commit', request) and versioncontrol.hasversioning(path_obj.abs_real_path):
         link = dispatch.commit(request, path_obj)
@@ -216,6 +230,7 @@ def commit_link(request, path_obj):
             'text': text,
             'link': link,
         }
+
 
 def update_link(request, path_obj):
     if path_obj.abs_real_path and check_permission('commit', request) and versioncontrol.hasversioning(path_obj.abs_real_path):
@@ -228,6 +243,7 @@ def update_link(request, path_obj):
             'link': link,
         }
 
+
 def update_all_link(request, path_obj):
     if check_permission('commit', request):  # FIXME: also check if directory under VCS control
         link = 'javascript:alert("Not implemented")'  # FIXME: provide actual link
@@ -239,6 +255,7 @@ def update_all_link(request, path_obj):
             'link': link,
         }
 
+
 def _gen_link_list(request, path_obj, linkfuncs):
     links = []
     for linkfunc in linkfuncs:
@@ -247,19 +264,23 @@ def _gen_link_list(request, path_obj, linkfuncs):
             links.append(link)
     return links
 
+
 def store_translate_links(request, path_obj):
     """returns a list of links for store items in translate tab"""
     linkfuncs = [quick_link, translate_all_link, xliff_link, download_link, update_link, commit_link]
     return _gen_link_list(request, path_obj, linkfuncs)
+
 
 def store_review_links(request, path_obj):
     """returns a list of links for store items in review tab"""
     linkfuncs = [review_link]
     return _gen_link_list(request, path_obj, linkfuncs)
 
+
 def directory_translate_links(request, path_obj):
     """returns a list of links for directory items in translate tab"""
     return _gen_link_list(request, path_obj, [quick_link, translate_all_link, upload_link, zip_link, update_all_link])
+
 
 def directory_review_links(request, path_obj):
     """returns a list of links for directory items in review tab"""
@@ -291,6 +312,7 @@ def stats_descriptions(quick_stats):
         'todo_tooltip': todo_tooltip,
     }
 
+
 def make_generic_item(request, path_obj, action, show_checks=False, terminology=False):
     """Template variables for each row in the table.
 
@@ -318,6 +340,7 @@ def make_generic_item(request, path_obj, action, show_checks=False, terminology=
             }
     return info
 
+
 def make_directory_item(request, directory, links_required=None, terminology=False):
     action = dispatch.show_directory(request, directory.pootle_path)
     show_checks = links_required == 'review'
@@ -332,6 +355,7 @@ def make_directory_item(request, directory, links_required=None, terminology=Fal
             'icon': 'folder',
             'isdir': True})
     return item
+
 
 def make_store_item(request, store, links_required=None, terminology=False):
     action = dispatch.translate(store)

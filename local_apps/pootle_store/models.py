@@ -59,7 +59,9 @@ PARSED = 1
 # Quality checks run
 CHECKED = 2
 
+
 ############### Quality Check #############
+
 
 class QualityCheck(models.Model):
     """database cache of results of qualitychecks on unit"""
@@ -72,12 +74,15 @@ class QualityCheck(models.Model):
     def __unicode__(self):
         return self.name
 
+
 ################# Suggestion ################
+
 
 class SuggestionManager(RelatedManager):
     def get_by_natural_key(self, target_hash, unitid_hash, pootle_path):
         return self.get(target_hash=target_hash, unit__unitid_hash=unitid_hash,
                  unit__store__pootle_path=pootle_path)
+
 
 class Suggestion(models.Model, base.TranslationUnit):
     """suggested translation for unit, provided by users or
@@ -125,6 +130,7 @@ class Suggestion(models.Model, base.TranslationUnit):
 
     translator_comment = property(lambda self: self.translator_comment_f, _set_translator_comment)
 
+
 def delete_votes(sender, instance, **kwargs):
     # Since votes are linked by ContentType and not foreign keys, referential
     # integrity is not kept, and we have to ensure we remove any votes manually
@@ -139,6 +145,7 @@ post_delete.connect(delete_votes, sender=Suggestion)
 
 ############### Unit ####################
 
+
 def fix_monolingual(oldunit, newunit, monolingual=None):
     """hackish workaround for monolingual files always having only source and no target.
 
@@ -151,6 +158,7 @@ def fix_monolingual(oldunit, newunit, monolingual=None):
         newunit.target = newunit.source
         newunit.source = oldunit.source
 
+
 def count_words(strings):
     wordcount = 0
     from translate.storage import statsdb
@@ -158,15 +166,18 @@ def count_words(strings):
         wordcount += statsdb.wordcount(string)
     return wordcount
 
+
 def stringcount(string):
     try:
         return len(string.strings)
     except AttributeError:
         return 1
 
+
 class UnitManager(RelatedManager):
     def get_by_natural_key(self, unitid_hash, pootle_path):
         return self.get(unitid_hash=unitid_hash, store__pootle_path=pootle_path)
+
 
 class Unit(models.Model, base.TranslationUnit):
     objects = UnitManager()
@@ -684,9 +695,11 @@ fs = FileSystemStorage(location=settings.PODIRECTORY)
 # regexp to parse suggester name from msgidcomment
 suggester_regexp = re.compile(r'suggested by (.*) \[[-0-9]+\]')
 
+
 class StoreManager(RelatedManager):
     def get_by_natural_key(self, pootle_path):
         return self.get(pootle_path=pootle_path)
+
 
 class Store(models.Model, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""

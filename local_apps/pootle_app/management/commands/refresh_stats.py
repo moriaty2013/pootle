@@ -23,6 +23,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand
 
+
 class Command(PootleCommand):
     help = "Allow stats and text indices to be refreshed manually."
 

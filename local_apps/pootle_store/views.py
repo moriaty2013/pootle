@@ -159,12 +159,15 @@ def export_as_type(request, store, filetype):
         cache.set(key, store.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
     return redirect('/export/' + export_path)
 
+
 @get_store_context('view')
 def download(request, store):
     store.sync(update_translation=True)
     return redirect('/export/' + store.real_path)
 
+
 ####################### Translate Page ##############################
+
 
 def get_alt_src_langs(request, profile, translation_project):
     language = translation_project.language
@@ -188,6 +191,7 @@ def get_alt_src_langs(request, profile, translation_project):
             if langs.count():
                 break
     return langs
+
 
 def get_non_indexed_search_step_query(form, units_queryset):
     words = form.cleaned_data['search'].split()
@@ -339,9 +343,11 @@ def translate_page(request):
 def translate(request, store):
     return translate_page(request)
 
+
 #
 # Views used with XMLHttpRequest requests.
 #
+
 
 def _filter_ctxt_units(units_qs, unit, limit, gap=0):
     """
@@ -361,6 +367,7 @@ def _filter_ctxt_units(units_qs, unit, limit, gap=0):
     else:
         result['after'] = []
     return result
+
 
 def _build_units_list(units, reverse=False):
     """
@@ -751,6 +758,7 @@ def accept_suggestion(request, unit, suggid):
             sub.save()
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
+
 
 @ajax_required
 def clear_vote(request, voteid):

@@ -22,11 +22,14 @@ from django.conf import settings
 from django.utils.html import escape
 from django.utils.translation import ugettext as _
 
+
 def get_title():
     return _(settings.TITLE)
 
+
 def get_description():
     return _(settings.DESCRIPTION)
+
 
 def weblanguage(language):
     """Reformats the language code from locale style (pt_BR) to web

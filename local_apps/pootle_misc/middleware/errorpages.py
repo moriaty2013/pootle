@@ -34,6 +34,7 @@ from django.core.mail import mail_admins
 
 from pootle_misc.baseurl import l
 
+
 class ErrorPagesMiddleware(object):
     """
     Friendlier Error Pages

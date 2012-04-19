@@ -20,7 +20,10 @@
 
 from django import template
 
+
 register = template.Library()
+
+
 @register.inclusion_tag('terminology/term_edit.html', takes_context=True)
 def render_term_edit(context, form):
     unit = form.instance

@@ -20,6 +20,7 @@
 
 from django.conf import settings
 
+
 class BaseUrlMiddleware(object):
     def process_request(self, request):
         """calculate settings.BASEURL based on HTTP headers"""

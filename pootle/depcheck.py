@@ -29,6 +29,8 @@ from django.conf import settings
 # test core dependencies #
 ##########################
 translate_required_ver = (1, 8, 0)
+
+
 def test_translate():
     try:
         from translate.__version__ import ver, sver
@@ -38,6 +40,7 @@ def test_translate():
             return False, sver
     except ImportError:
         return None, None
+
 
 def test_sqlite():
     try:
@@ -50,6 +53,7 @@ def test_sqlite():
     except ImportError:
         return False
 
+
 def test_django():
     from django import VERSION, get_version
     if VERSION >= (1, 2, 0):
@@ -57,9 +61,11 @@ def test_django():
     else:
         return False, get_version()
 
+
 ##############################
 # test optional dependencies #
 ##############################
+
 
 def test_unzip():
     """test for unzip command"""
@@ -68,6 +74,7 @@ def test_unzip():
         return True
     except:
         return False
+
 
 def test_iso_codes():
     import gettext
@@ -80,6 +87,8 @@ def test_iso_codes():
 
 
 lxml_required_ver = (2, 1, 4, 0)
+
+
 def test_lxml():
     try:
         from lxml.etree import LXML_VERSION, __version__
@@ -90,6 +99,7 @@ def test_lxml():
     except ImportError:
         return None, None
 
+
 def test_levenshtein():
     try:
         import Levenshtein
@@ -97,9 +107,11 @@ def test_levenshtein():
     except ImportError:
         return False
 
+
 def test_indexer():
     from translate.search.indexing import _get_available_indexers
     return [indexer.__module__.split('.')[-1] for indexer in _get_available_indexers()]
+
 
 def test_gaupol():
     try:
@@ -112,6 +124,7 @@ def test_gaupol():
         except ImportError:
             pass
         return False
+
 
 ######################
 # test optimal setup #
@@ -131,6 +144,7 @@ def test_db():
     else:
         return getattr(settings, "DATABASE_ENGINE", None) != 'sqlite3'
 
+
 def test_cache():
     """test if cache backend is memcached"""
     #FIXME: maybe we shouldn't complain if cache is set to db or file?
@@ -138,6 +152,7 @@ def test_cache():
         return "memcache" in settings.CACHES['default']['BACKEND']
     else:
         return settings.CACHE_BACKEND.startswith('memcached')
+
 
 def test_memcache():
     try:
@@ -154,27 +169,34 @@ def test_memcache():
                 return False
         return False
 
+
 def test_memcached():
     """test if we can connect to memcache server"""
     from django.core.cache import cache
     return cache._cache.servers[0].connect()
 
+
 def test_session():
     """test that session backend is set to memcahce"""
     return settings.SESSION_ENGINE.split('.')[-1] in ('cache', 'cached_db')
 
+
 def test_debug():
     return not settings.DEBUG
+
 
 def test_webserver():
     """test that webserver is apache"""
     return 'apache' in sys.modules or '_apache' in sys.modules or 'mod_wsgi' in sys.modules
 
+
 def test_livetranslation():
     return not settings.LIVE_TRANSLATION
 
+
 def test_from_email():
     return bool(settings.DEFAULT_FROM_EMAIL)
+
 
 def test_contact_email():
     return bool(settings.CONTACT_EMAIL)

@@ -40,6 +40,7 @@ from pootle_profile.models import PootleProfile
 from pootle_store.util import TRANSLATED
 from pootle_statistics.models import Submission
 
+
 def required_depcheck():
     required = []
 
@@ -148,9 +149,11 @@ def optimal_depcheck():
 
     return optimal
 
+
 def _format_numbers(dict):
     for k in dict.keys():
         dict[k] = locale.format("%d", dict[k], grouping=True)
+
 
 def server_stats():
     result = cache.get("server_stats")
@@ -164,6 +167,7 @@ def server_stats():
         cache.set("server_stats", result, 86400)
     _format_numbers(result)
     return result
+
 
 @user_is_admin
 def server_stats_more(request):
@@ -195,6 +199,7 @@ def server_stats_more(request):
         response.append((stat_strings[k], result[k]))
     response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
+
 
 @user_is_admin
 def view(request):

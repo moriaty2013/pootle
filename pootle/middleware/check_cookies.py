@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+
 class CheckCookieMiddleware(object):
     def process_request(self, request):
         # If the user is logged in, then we know for sure that she had

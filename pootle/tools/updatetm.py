@@ -29,6 +29,7 @@ import exceptions
 # We don't want to reinitialise the TM each time, so let's store it here.
 tmmatcher = None
 
+
 def memory(tmfile, max_candidates=4, min_similarity=75, max_length=1000):
     """Returns the TM store to use. Only initialises on first call."""
     global tmmatcher
@@ -37,6 +38,7 @@ def memory(tmfile, max_candidates=4, min_similarity=75, max_length=1000):
         tmstore = factory.getobject(tmfile)
         tmmatcher = match.matcher(tmstore, max_candidates=max_candidates, min_similarity=min_similarity, max_length=max_length)
     return tmmatcher
+
 
 def buildmatches(inputfile, outputfile, matcher):
     """Builds a .po.tm file for use in Pootle"""
@@ -64,6 +66,7 @@ def buildmatches(inputfile, outputfile, matcher):
         return outputfile
     return outputfile
 
+
 def writematches(inputfile, outputfile, templatefile, tm=None, max_candidates=4, min_similarity=75, max_length=1000):
     if templatefile:
         raise Warning("Template ignored")
@@ -76,6 +79,7 @@ def writematches(inputfile, outputfile, templatefile, tm=None, max_candidates=4,
     output = buildmatches(inputfile, outputfile, matcher)
     outputfile.writelines(str(output))
     return 1
+
 
 def main(argv=None):
     formats = {"po": ("po.tm", writematches)}

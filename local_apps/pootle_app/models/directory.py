@@ -28,6 +28,7 @@ from pootle_misc.util import getfromcache, dictsum
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 
+
 class DirectoryManager(models.Manager):
     def get_query_set(self):
         # ForeignKey fields with null=True are not selected by
@@ -41,6 +42,7 @@ class DirectoryManager(models.Manager):
     def _get_projects(self):
         return self.get(pootle_path='/projects/')
     projects = property(_get_projects)
+
 
 class Directory(models.Model):
     class Meta:

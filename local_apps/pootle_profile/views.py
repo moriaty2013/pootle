@@ -53,6 +53,7 @@ def get_pootle_profile_form(request):
             exclude = excluded
     return PootleProfileForm
 
+
 def profile_edit(request):
     return edit_profile(request, form_class=get_pootle_profile_form(request))
 
@@ -61,6 +62,7 @@ class UserForm(ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
+
 
 @login_required
 def edit_personal_info(request):
@@ -82,6 +84,7 @@ def redirect_after_login(request):
     if not redirect_to or '://' in redirect_to or ' ' in redirect_to:
         redirect_to = iri_to_uri('/accounts/%s/' % urlquote(request.user.username))
     return redirect(redirect_to)
+
 
 def language_list(request):
     """returns the list of localised language names, with 'default'"""

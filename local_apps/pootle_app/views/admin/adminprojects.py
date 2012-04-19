@@ -27,6 +27,7 @@ from pootle_project.models import Project
 from pootle_language.models import Language
 from pootle_store.models import Store
 
+
 @util.user_is_admin
 def view(request):
     queryset = Language.objects.exclude(code='templates')

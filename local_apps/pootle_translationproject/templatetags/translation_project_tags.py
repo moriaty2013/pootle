@@ -26,6 +26,7 @@ from pootle_misc.baseurl import l
 
 register = template.Library()
 
+
 @register.inclusion_tag('translation_project/search.html', takes_context=True)
 def render_search(context, form=None, action=None):
     translation_project = context['translation_project']

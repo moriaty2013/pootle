@@ -33,7 +33,9 @@ from pootle_store.fields import PLURAL_PLACEHOLDER
 
 ############## text cleanup and highlighting #########################
 
+
 FORM_RE = re.compile('\r\n|\r|\n|\t|\\\\')
+
 
 def highlight_whitespace(text):
     """Make whitespace chars visible."""
@@ -50,7 +52,10 @@ def highlight_whitespace(text):
 
     return FORM_RE.sub(replace, text)
 
+
 FORM_UNRE = re.compile('\r|\n|\t|\\\\r|\\\\n|\\\\t|\\\\\\\\')
+
+
 def unhighlight_whitespace(text):
     """Replace visible whitespace with proper whitespace."""
 
@@ -67,6 +72,7 @@ def unhighlight_whitespace(text):
         return submap[match.group()]
 
     return FORM_UNRE.sub(replace, text)
+
 
 class MultiStringWidget(forms.MultiWidget):
     """Custom Widget for editing multistrings, expands number of text
@@ -107,6 +113,7 @@ class MultiStringWidget(forms.MultiWidget):
         else:
             raise ValueError
 
+
 class HiddenMultiStringWidget(MultiStringWidget):
     """Uses hidden input instead of textareas."""
 
@@ -127,6 +134,7 @@ class HiddenMultiStringWidget(MultiStringWidget):
         # making the object callable let's us get away with forcing an
         # object where django expects a class
         return self
+
 
 class MultiStringFormField(forms.MultiValueField):
 

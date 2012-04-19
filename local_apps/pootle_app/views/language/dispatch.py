@@ -21,23 +21,30 @@
 
 from pootle_app import url_state, url_manip
 
+
 ################################################################################
+
 
 class CommonState(url_state.State):
     """Stores state common to project index pages and translation pages."""
     editing = url_state.BooleanValue('editing')
 
+
 ################################################################################
+
 
 class ProjectIndexState(CommonState):
     show_checks = url_state.BooleanValue('show_checks')
 
+
 ################################################################################
+
 
 class TranslatePageState(CommonState):
     # Search state
     matchnames = url_state.ListValue('matchnames')
     unitstates = url_state.ListValue('unitstates')
+
 
 def get_store(request):
     basename = url_manip.basename(request.path_info)
@@ -50,7 +57,9 @@ def get_store(request):
     else:
         return request.path_info
 
+
 ################################################################################
+
 
 def translate(pathobj, state=None, check=None, suggestions=False):
     # In Pootle, URLs ending in translate.html are used when the user
@@ -81,14 +90,18 @@ def show_directory(request, directory_path, **kwargs):
     params = ProjectIndexState(request.GET, **kwargs).encode()
     return url_manip.make_url(directory_path, params)
 
+
 def translation_project_admin(translation_project):
     return translation_project.directory.pootle_path + 'admin.html'
+
 
 def open_language(request, code):
     return '/%s/' % code
 
+
 def open_translation_project(request, language_code, project_code):
     return '/%s/%s/' % (language_code, project_code)
+
 
 def download_zip(request, path_obj):
     if path_obj.is_dir:
@@ -99,16 +112,20 @@ def download_zip(request, path_obj):
     archive_name = "%sexport/zip" % current_folder
     return archive_name
 
+
 def export(request, pootle_path, format):
     return '%s/export/%s' % (pootle_path, format)
+
 
 def commit(request, path_obj):
     params = ProjectIndexState(request.GET).encode()
     return  url_manip.make_url(path_obj.pootle_path + '/commit', params)
 
+
 def update(request, path_obj):
     params = ProjectIndexState(request.GET).encode()
     return  url_manip.make_url(path_obj.pootle_path + '/update', params)
+
 
 def terminology(request, path_obj):
     translation_project = path_obj.get_translationproject()

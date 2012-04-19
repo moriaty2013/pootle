@@ -27,6 +27,7 @@ from pootle_translationproject.models import TranslationProject
 from pootle_language.models import Language
 from pootle_project.models import Project
 
+
 class PootleCommand(NoArgsCommand):
     """base class for handling recursive pootle store management commands"""
     option_list = NoArgsCommand.option_list + (

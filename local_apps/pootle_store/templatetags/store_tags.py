@@ -38,6 +38,7 @@ from translate.misc.multistring import multistring
 
 register = template.Library()
 
+
 def find_altsrcs(unit, alt_src_langs, store=None, project=None):
     store = store or unit.store
     project = project or store.translation_project.project
@@ -48,6 +49,7 @@ def find_altsrcs(unit, alt_src_langs, store=None, project=None):
     if project.get_treestyle() == 'nongnu':
         altsrcs = altsrcs.filter(store__name=store.name)
     return altsrcs
+
 
 def call_highlight(old, new):
     """Calls diff highlighting code only if the target is set.
@@ -61,6 +63,7 @@ def call_highlight(old, new):
         return fancy_highlight(new)
     else:
         return highlight_diffs(old, new)
+
 
 def _google_highlight_diffs(old, new):
     """Highlights the differences between old and new."""
@@ -88,6 +91,7 @@ def _google_highlight_diffs(old, new):
     if removed:
         textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(removed)
     return mark_safe(textdiff)
+
 
 def _difflib_highlight_diffs(old, new):
     """Highlights the differences between old and new. The differences
@@ -161,6 +165,7 @@ def stat_summary(store):
     # The whole string of stats
     return mark_safe('%s &nbsp;&nbsp; %s' % (word_stats, string_stats))
 
+
 @register.filter('pluralize_source')
 def pluralize_source(unit):
     if unit.hasplural():
@@ -176,6 +181,7 @@ def pluralize_source(unit):
             return forms
     else:
         return [(0, unit.source, None)]
+
 
 @register.filter('pluralize_target')
 def pluralize_target(unit, nplurals=None):
@@ -199,6 +205,7 @@ def pluralize_target(unit, nplurals=None):
         return forms
     else:
         return [(0, unit.target, None)]
+
 
 @register.filter('pluralize_diff_sugg')
 def pluralize_diff_sugg(sugg):
@@ -239,6 +246,7 @@ def render_unit_edit(context, form):
                      }
     return template_vars
 
+
 @register.inclusion_tag('unit/view.html', takes_context=True)
 def render_unit_view(context, unit, show_comments=False):
     template_vars = {'unit': unit,
@@ -248,11 +256,13 @@ def render_unit_view(context, unit, show_comments=False):
                      }
     return template_vars
 
+
 @register.inclusion_tag('store/translate_table.html', takes_context=True)
 def translate_table(context):
     """encapsulate translate_table in a tag to avoid parsing template
     when cache will be used"""
     return context
+
 
 def do_include_raw(parser, token):
     """

@@ -26,6 +26,7 @@ from django.core.paginator import Paginator
 from django.utils.encoding import iri_to_uri
 from django.http import HttpResponseBadRequest
 
+
 def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     def _getfromcache(instance, *args, **kwargs):
         key = iri_to_uri(instance.pootle_path + ":" + function.__name__)
@@ -36,6 +37,7 @@ def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
             cache.set(key, result, timeout)
         return result
     return _getfromcache
+
 
 def deletefromcache(sender, functions, **kwargs):
     path = iri_to_uri(sender.pootle_path)
@@ -53,6 +55,7 @@ def deletefromcache(sender, functions, **kwargs):
             cache.delete(path + ":" + func)
         path_parts = path_parts[:-1]
         path = "/".join(path_parts) + "/"
+
 
 def dictsum(x, y):
     return dict((n, x.get(n, 0) + y.get(n, 0)) for n in set(x) | set(y))
@@ -72,6 +75,7 @@ def paginate(request, queryset, items=30, page=None):
 
     return paginator.page(page)
 
+
 def nice_percentage(percentage):
     """Return an integer percentage, but avoid returning 0% or 100% if it
     might be misleading."""
@@ -84,6 +88,7 @@ def nice_percentage(percentage):
         return 1
     return int(round(percentage))
 
+
 def add_percentages(quick_stats):
     """Add percentages onto the raw stats dictionary."""
     quick_stats['translatedpercentage'] = nice_percentage(100.0 * quick_stats['translatedsourcewords'] / max(quick_stats['totalsourcewords'], 1))
@@ -94,6 +99,7 @@ def add_percentages(quick_stats):
     quick_stats['struntranslatedpercentage'] = 100 - quick_stats['strtranslatedpercentage'] - quick_stats['strfuzzypercentage']
 
     return quick_stats
+
 
 def ajax_required(f):
     """

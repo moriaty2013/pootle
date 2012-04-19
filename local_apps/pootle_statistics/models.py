@@ -24,6 +24,7 @@ from django.utils.safestring import mark_safe
 
 from pootle_app.lib.util import RelatedManager
 
+
 class Submission(models.Model):
     class Meta:
         get_latest_by = "creation_time"
