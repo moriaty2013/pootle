@@ -220,21 +220,21 @@ def create_database_user(data, user_name):
         last_name = ' '.join(parts[1:])[:30]
 
     # Create basic user information
-    user = User(username       = user_name,
-                first_name     = first_name,
-                last_name      = last_name,
-                email          = _get_user_attribute(data, user_name, 'email'),
-                is_active      = try_type(bool, _get_user_attribute(data, user_name, 'activated',
-                                                                    unicode_me=False, default=0)),
-                password       = _get_user_attribute(data, user_name, 'passwdhash',
-                                                     unicode_me = False),
+    user = User(username=user_name,
+                first_name=first_name,
+                last_name=last_name,
+                email=_get_user_attribute(data, user_name, 'email'),
+                is_active=try_type(bool, _get_user_attribute(data, user_name, 'activated',
+                                                             unicode_me=False, default=0)),
+                password=_get_user_attribute(data, user_name, 'passwdhash',
+                                             unicode_me=False),
                 # "hash" is the login type that indicates "hash" the user's
                 # submitted password into MD5 and check against a local file/DB.
-                #                logintype      = _get_user_attribute(data, user_name, 'logintype',
-                #                                                     unicode_me = False,
-                #                                                     default = 'hash'),
-                is_superuser   = try_type(bool, _get_user_attribute(data, user_name, 'rights.siteadmin',
-                                                                    unicode_me=False, default=0)))
+                #                logintype=_get_user_attribute(data, user_name, 'logintype',
+                #                                              unicode_me = False,
+                #                                              default = 'hash'),
+                is_superuser=try_type(bool, _get_user_attribute(data, user_name, 'rights.siteadmin',
+                                                                unicode_me=False, default=0)))
     # django admin only accessible to users with is_staff bit set
     user.is_staff = user.is_superuser
     # We have to save the user to ensure that an associated PootleProfile is created...
