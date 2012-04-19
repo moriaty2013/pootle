@@ -38,7 +38,7 @@ def add_trailing_slash(path):
 def url_split(path):
     try:
         slash_pos = strip_trailing_slash(path).rindex('/')
-        return path[:slash_pos+1], path[slash_pos+1:]
+        return path[:(slash_pos + 1)], path[(slash_pos + 1):]
     except ValueError:
         return '', path
 

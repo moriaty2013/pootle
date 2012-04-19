@@ -55,7 +55,7 @@ except ImportError:
 
     def max_column(queryset, column, default):
         try:
-            return queryset.order_by('-'+column).values_list(column, flat=True)[0]
+            return queryset.order_by('-' + column).values_list(column, flat=True)[0]
         except (IndexError, ObjectDoesNotExist):
             return default
 

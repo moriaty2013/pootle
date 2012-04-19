@@ -121,7 +121,7 @@ def expand_tree_globs(root, subdirs, globs):
                 dirglobs.append(path.join(subdir, g))
 
         for dirpath, dirs, files in os.walk(path.join(root, subdir)):
-            curdir = dirpath[len(root)+1:]
+            curdir = dirpath[(len(root) + 1):]
             for d in dirs:
                 for g in globs:
                     if glob.glob(path.join(root, curdir, d, g)):
@@ -147,9 +147,9 @@ def find_packages(where='.', exclude=()):
             fn = os.path.join(where, name)
             if ('.' not in name and os.path.isdir(fn) and
                 os.path.isfile(os.path.join(fn, '__init__.py'))):
-                out.append(prefix+name)
-                stack.append((fn, prefix+name+'.'))
-    for pat in list(exclude)+['ez_setup']:
+                out.append(prefix + name)
+                stack.append((fn, prefix + name + '.'))
+    for pat in list(exclude) + ['ez_setup']:
         from fnmatch import fnmatchcase
         out = [item for item in out if not fnmatchcase(item, pat)]
     return out

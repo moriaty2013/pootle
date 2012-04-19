@@ -69,7 +69,7 @@ def edit_personal_info(request):
         user_form = UserForm(post, instance=request.user)
         if user_form.is_valid():
             user_form.save()
-            response = redirect('/accounts/'+request.user.username)
+            response = redirect('/accounts/' + request.user.username)
     else:
         user_form = UserForm(instance=request.user)
     template_vars = {"form": user_form}

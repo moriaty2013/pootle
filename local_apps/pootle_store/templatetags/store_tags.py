@@ -133,7 +133,7 @@ def get_sugg_list(unit):
             from voting.models import Vote
             scores = Vote.objects.get_scores_in_bulk(suggestions)
     for i, sugg in enumerate(suggestions):
-        title = _(u"Suggestion %(i)d by %(user)s:", {'i': i+1, 'user': sugg.user})
+        title = _(u"Suggestion %(i)d by %(user)s:", {'i': i + 1, 'user': sugg.user})
         score = scores.get(sugg.id, False)
         sugg_list.append((sugg, title, score))
     if len(sugg_list) == 1:

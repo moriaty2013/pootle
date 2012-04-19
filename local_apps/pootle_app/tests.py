@@ -350,7 +350,7 @@ msgstr "resto"
         self.assertContains(response, 'just fish')
 
         expectedcontent = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "just fish"\n'
-        response = self.client.get(pootle_path+'/download')
+        response = self.client.get(pootle_path + '/download')
         store = Store.objects.get(pootle_path=pootle_path)
         self.assertTrue(store.file.read().find(expectedcontent) >= 0)
 

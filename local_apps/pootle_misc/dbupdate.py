@@ -183,7 +183,7 @@ def update_qualitychecks_21040():
 def update_stats_21060():
     text = """
     <p>%s</p>
-    """ %_('Removing potentially incorrect cached stats, will be recalculated...')
+    """ % _('Removing potentially incorrect cached stats, will be recalculated...')
     logging.info('flushing cached stats')
     for tp in TranslationProject.objects.filter(stores__unit__state=OBSOLETE).distinct().iterator():
         deletefromcache(tp, ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
@@ -193,7 +193,7 @@ def update_stats_21060():
 def update_ts_tt_12008():
     text = """
     <p>%s</p>
-    """ %_('Reparsing Qt ts files...')
+    """ % _('Reparsing Qt ts files...')
     logging.info('reparsing qt ts')
     for store in Store.objects.filter(state__gt=PARSED,
                                       translation_project__project__localfiletype='ts',

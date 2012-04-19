@@ -392,16 +392,16 @@ X-Generator: Pootle Tests
     def _setup_test_files(self):
         gnu = os.path.join(self.testpodir, "testproj")
         os.mkdir(gnu)
-        potfile = file(os.path.join(gnu, "test_en."+self.ext), 'w')
+        potfile = file(os.path.join(gnu, "test_en." + self.ext), 'w')
         potfile.write(self.template_text)
         potfile.close()
-        pofile = file(os.path.join(gnu, "test_ar."+self.ext), 'w')
+        pofile = file(os.path.join(gnu, "test_ar." + self.ext), 'w')
         pofile.write(self.target_text)
         pofile.close()
-        pofile = file(os.path.join(gnu, "test_af."+self.ext), 'w')
+        pofile = file(os.path.join(gnu, "test_af." + self.ext), 'w')
         pofile.write(self.target_text)
         pofile.close()
-        pofile = file(os.path.join(gnu, "test_zu."+self.ext), 'w')
+        pofile = file(os.path.join(gnu, "test_zu." + self.ext), 'w')
         pofile.write(self.target_text)
         pofile.close()
 
@@ -431,7 +431,7 @@ X-Generator: Pootle Tests
         self.assertTrue(unit)
 
     def test_plural(self):
-        store = Store.objects.get(pootle_path='/en/testproj/test_en.'+self.ext)
+        store = Store.objects.get(pootle_path=('/en/testproj/test_en.' + self.ext))
         unit = store.findunit('%d new')
         self.assertTrue(unit.hasplural())
 
@@ -558,7 +558,7 @@ new=%d new
 
     def setUp(self):
         super(PropTests, self).setUp()
-        potfile = file(os.path.join(self.testpodir, "testproj", "test_en."+self.ext), 'w')
+        potfile = file(os.path.join(self.testpodir, "testproj", "test_en." + self.ext), 'w')
         potfile.write(self.new_template_text)
         potfile.close()
         template_tp = self.project.translationproject_set.get(language__code='en')

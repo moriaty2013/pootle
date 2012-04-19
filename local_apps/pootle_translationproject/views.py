@@ -401,7 +401,7 @@ def unzip_external(request, directory, django_file, overwrite):
                 newfile = StringIO.StringIO(open(os.path.join(basedir, fname), 'rb').read())
                 newfile.name = os.path.basename(fname)
                 # Get the filesystem path relative to the temporary directory
-                subdir = host_to_unix_path(basedir[len(prefix)+len(os.sep):])
+                subdir = host_to_unix_path(basedir[(len(prefix) + len(os.sep)):])
                 if subdir:
                     target_dir = directory.get_or_make_subdir(subdir)
                 else:

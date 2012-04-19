@@ -349,14 +349,14 @@ def _filter_ctxt_units(units_qs, unit, limit, gap=0):
     """
     result = {}
     if limit and unit.index - gap > 0:
-        before = units_qs.filter(store=unit.store_id, index__lt=unit.index).order_by('-index')[gap:limit+gap]
+        before = units_qs.filter(store=unit.store_id, index__lt=unit.index).order_by('-index')[gap:(limit + gap)]
         result['before'] = _build_units_list(before, reverse=True)
         result['before'].reverse()
     else:
         result['before'] = []
     #FIXME: can we avoid this query if length is known?
     if limit:
-        after = units_qs.filter(store=unit.store_id, index__gt=unit.index)[gap:limit+gap]
+        after = units_qs.filter(store=unit.store_id, index__gt=unit.index)[gap:(limit + gap)]
         result['after'] = _build_units_list(after)
     else:
         result['after'] = []

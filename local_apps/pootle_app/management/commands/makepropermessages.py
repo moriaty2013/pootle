@@ -133,8 +133,8 @@ def make_messages(locale=None, domain='django', verbosity='1', all=False, extens
                 errors = stderr.read()
                 if errors:
                     raise CommandError("errors happened while running xgettext on %s\n%s" % (file, errors))
-                old = '#: '+os.path.join(dirpath, thefile)[2:]
-                new = '#: '+os.path.join(dirpath, file)[2:]
+                old = '#: ' + os.path.join(dirpath, thefile)[2:]
+                new = '#: ' + os.path.join(dirpath, file)[2:]
                 msgs = msgs.replace(old, new)
                 if os.path.exists(potfile):
                     # Strip the header
@@ -164,8 +164,8 @@ def make_messages(locale=None, domain='django', verbosity='1', all=False, extens
                     msgs = msgs.decode('utf-8').encode('iso-8859-1')
 
                 if thefile != file:
-                    old = '#: '+os.path.join(dirpath, thefile)[2:]
-                    new = '#: '+os.path.join(dirpath, file)[2:]
+                    old = '#: ' + os.path.join(dirpath, thefile)[2:]
+                    new = '#: ' + os.path.join(dirpath, file)[2:]
                     msgs = msgs.replace(old, new)
                 if os.path.exists(potfile):
                     # Strip the header

@@ -191,5 +191,5 @@ class Directory(models.Model):
             return translation_project.real_path
 
         if translation_project:
-            path_prefix = self.pootle_path[len(translation_project.pootle_path)-1:-1]
+            path_prefix = self.pootle_path[(len(translation_project.pootle_path) - 1):-1]
             return translation_project.real_path + path_prefix

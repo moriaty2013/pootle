@@ -74,7 +74,7 @@ class MathCaptchaForm(forms.Form):
         for it, reset previous answer if any."""
         q, a = self._generate_captcha()
         expires = time.time() +\
-        getattr(settings, 'CAPTCHA_EXPIRES_SECONDS', 60*60)
+        getattr(settings, 'CAPTCHA_EXPIRES_SECONDS', 60 * 60)
         token = self._make_token(q, a, expires)
         self.initial['captcha_token'] = token
         self._plain_question = q
@@ -93,7 +93,7 @@ class MathCaptchaForm(forms.Form):
     def _generate_captcha(self):
         """Generate question and return it along with correct answer."""
         a, b = randint(1, 9), randint(1, 9)
-        return ("%s+%s" % (a, b), a+b)
+        return ("%s+%s" % (a, b), a + b)
 
     def _make_token(self, q, a, expires):
         data = base64.urlsafe_b64encode(\

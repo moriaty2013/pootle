@@ -171,8 +171,10 @@ def find_lang_postfix(filename):
         return match.groups()[0]
 
     for code in Language.objects.values_list('code', flat=True):
-        if name.endswith('-'+code) or name.endswith('_'+code) or name.endswith('.'+code) or \
-               name.lower().endswith('-'+code.lower()) or name.endswith('_'+code) or name.endswith('.'+code):
+        if (name.endswith('-' + code) or name.endswith('_' + code) or
+            name.endswith('.' + code) or
+            name.lower().endswith('-' + code.lower()) or
+            name.endswith('_' + code) or name.endswith('.' + code)):
             return code
 
 def translation_project_should_exist(language, project):
@@ -323,8 +325,12 @@ def get_translated_name_gnu(translation_project, store):
             tprefix = prefix[:-1]
         try:
             target_store = translation_project.stores.filter(parent__pootle_path=pootle_path, name__in=[
-                                              tprefix+'-'+suffix, tprefix+'_'+suffix, tprefix+'.'+suffix,
-                                              tprefix+'-'+suffix.lower(), tprefix+'_'+suffix.lower(), tprefix+'.'+suffix.lower()
+                                              tprefix + '-' + suffix,
+                                              tprefix + '_' + suffix,
+                                              tprefix + '.' + suffix,
+                                              tprefix + '-' + suffix.lower(),
+                                              tprefix + '_' + suffix.lower(),
+                                              tprefix + '.' + suffix.lower(),
                                           ])[0]
             return target_store.pootle_path, target_store.file and target_store.file.path
         except (Store.DoesNotExist, IndexError):

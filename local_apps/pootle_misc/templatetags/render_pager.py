@@ -37,7 +37,7 @@ def render_pager(pager):
     end = min(pager.paginator.num_pages, pager.number + 4)
     if start > 1:
         result += '<li>...</li>'
-    for i in range(start, end+1):
+    for i in range(start, end + 1):
         if i == pager.number:
             result += '<li><span class="current-link">%s</span></li>' % i
         else:

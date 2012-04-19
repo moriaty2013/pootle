@@ -340,7 +340,7 @@ class Unit(models.Model, base.TranslationUnit):
                 target_plurals = len(self.target.strings)
                 strings = self.target.strings
                 if target_plurals < nplurals:
-                    strings.extend([u'']*(nplurals - target_plurals))
+                    strings.extend([u''] * (nplurals - target_plurals))
                 if unit.target.strings != strings:
                     unit.target = strings
                     changed = True
@@ -772,7 +772,7 @@ class Store(models.Model, base.TranslationStore):
     def findid_bulk(self, ids):
         chunks = 200
         for i in xrange(0, len(ids), chunks):
-            units = self.unit_set.filter(id__in=ids[i:i+chunks])
+            units = self.unit_set.filter(id__in=ids[i:(i + chunks)])
             for unit in units.iterator():
                 yield unit
 
