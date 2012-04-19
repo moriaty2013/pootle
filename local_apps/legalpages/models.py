@@ -52,14 +52,11 @@ class LegalPage(models.Model):
 
     body_html = models.TextField(editable=False, blank=True)
 
-
     def __unicode__(self):
         return self.slug
 
-
     def localized_title(self):
         return _(self.title)
-
 
     def get_absolute_url(self):
 
@@ -67,7 +64,6 @@ class LegalPage(models.Model):
             return self.url
 
         return reverse('legalpages.views.legalpage', args=[self.slug])
-
 
     def save(self, *args, **kwargs):
         """Applies a markup filter to populate `body_html` upon saving."""

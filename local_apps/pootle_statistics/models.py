@@ -36,7 +36,6 @@ class Submission(models.Model):
     submitter = models.ForeignKey('pootle_profile.PootleProfile', null=True, db_index=True)
     from_suggestion = models.OneToOneField('pootle_app.Suggestion', null=True, db_index=True)
 
-
     def __unicode__(self):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
                              unicode(self.submitter))

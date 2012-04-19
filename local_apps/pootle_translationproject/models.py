@@ -120,7 +120,6 @@ class TranslationProject(models.Model):
         directory.delete()
         deletefromcache(self, ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
 
-
     def get_absolute_url(self):
         return l(self.pootle_path)
 
@@ -444,7 +443,6 @@ class TranslationProject(models.Model):
         post_vc_commit.send(sender=self, store=store, stats=stats, user=user, success=success)
         return success
 
-
     def initialize(self):
         try:
             from pootle.scripts import hooks
@@ -546,7 +544,6 @@ class TranslationProject(models.Model):
             except:
                 pass
 
-
     def update_index(self, indexer, store, unitid=None):
         """updates the index with the contents of pofilename (limit to items if given)
 
@@ -619,7 +616,6 @@ class TranslationProject(models.Model):
         if addlist:
             for add_item in addlist:
                 indexer.index_document(add_item)
-
 
     ########################################################################################
 

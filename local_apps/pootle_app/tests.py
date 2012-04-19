@@ -197,7 +197,6 @@ msgstr "resto"
         suggestions = [str(sug) for sug in store.findunit('test').get_suggestions()]
         self.assertTrue("blo3" in suggestions)
 
-
     def test_upload_new_xliff_file(self):
         """Tests that we can upload a new XLIFF file into a project."""
         xliffcontent = wStringIO.StringIO('''<?xml version='1.0' encoding='utf-8'?>
@@ -353,7 +352,6 @@ msgstr "resto"
         response = self.client.get(pootle_path + '/download')
         store = Store.objects.get(pootle_path=pootle_path)
         self.assertTrue(store.file.read().find(expectedcontent) >= 0)
-
 
     def test_submit_fuzzy(self):
         """Tests that we can mark a unit as fuzzy."""

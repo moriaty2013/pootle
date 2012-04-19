@@ -330,7 +330,6 @@ def host_to_unix_path(p):
     return '/'.join(p.split(os.sep))
 
 
-
 def get_upload_path(translation_project, relative_root_dir, local_filename):
     """gets the path of a translation file being uploaded securely,
     creating directories as neccessary"""
@@ -593,17 +592,14 @@ class UpdateHandler(view_handler.Handler):
 
     actions = [('do_update', _('Update all from version control'))]
 
-
     class Form(forms.Form):
         pass
-
 
     @classmethod
     def must_display(cls, request, *args, **kwargs):
         return check_permission('commit', request) and \
             versioncontrol.hasversioning(
                     request.translation_project.abs_real_path)
-
 
     def do_update(self, request, translation_project, directory):
         translation_project.update_project(request)
@@ -619,7 +615,6 @@ class UploadHandler(view_handler.Handler):
         return check_permission('translate', request) or \
                check_permission('suggest', request) or \
                check_permission('overwrite', request)
-
 
     def __init__(self, request, data=None, files=None):
 
@@ -640,18 +635,15 @@ class UploadHandler(view_handler.Handler):
 
         translation_project = request.translation_project
 
-
         class StoreFormField(forms.ModelChoiceField):
 
             def label_from_instance(self, instance):
                 return _(instance.pootle_path[len(translation_project.pootle_path):])
 
-
         class DirectoryFormField(forms.ModelChoiceField):
 
             def label_from_instance(self, instance):
                 return _(instance.pootle_path[len(translation_project.pootle_path):])
-
 
         class UploadForm(forms.Form):
 
@@ -680,14 +672,12 @@ class UploadHandler(view_handler.Handler):
                                 "merge with. If not specified, the uploaded "
                                 "file's name is used."))
 
-
         self.Form = UploadForm
 
         super(UploadHandler, self).__init__(request, data, files)
 
         self.form.allow_overwrite = check_permission('overwrite', request)
         self.form.title = _("Upload File")
-
 
     def do_upload(self, request, translation_project, directory):
 

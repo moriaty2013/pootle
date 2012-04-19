@@ -272,7 +272,6 @@ class XHRTestAnonymous(PootleTestCase):
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(r.status_code, 404)
 
-
     #
     # Tests for the process_submit() view.
     #
@@ -330,7 +329,6 @@ class XHRTestAnonymous(PootleTestCase):
             self.assertEqual(r.status_code, 200)
             j = simplejson.loads(r.content)
             self.assertTrue('captcha' in j.keys())
-
 
 
 class XHRTestNobody(XHRTestAnonymous):

@@ -154,7 +154,6 @@ class PootleProfile(models.Model):
         return quicklinks
 
 
-
 def create_pootle_profile(sender, instance, **kwargs):
     """A post-save hook for the User model which ensures that it gets an
     associated PootleProfile."""

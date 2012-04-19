@@ -163,7 +163,6 @@ class TranslationStoreFieldFile(FieldFile):
                 self._store_cache[self.path] = self._store_tuple
                 translation_file_updated.send(sender=self, path=self.path)
 
-
     def _touch_store_cache(self):
         """Update stored mod_info without reparsing file."""
         if hasattr(self, "_store_tuple"):
@@ -174,7 +173,6 @@ class TranslationStoreFieldFile(FieldFile):
         else:
             #FIXME: do we really need that?
             self._update_store_cache()
-
 
     def _delete_store_cache(self):
         """Remove translation store from cache."""

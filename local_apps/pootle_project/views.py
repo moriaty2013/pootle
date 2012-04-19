@@ -136,7 +136,6 @@ class TranslationProjectFormSet(BaseModelFormSet):
 
         return result
 
-
     def save_new(self, form, commit=True):
         result = super(TranslationProjectFormSet, self).save_new(form, commit)
         form.process_extra_fields()
@@ -153,7 +152,6 @@ def project_admin(request, project_code):
         raise PermissionDenied(_("You do not have rights to administer this project."))
 
     template_translation_project = current_project.get_template_translationproject()
-
 
     class TranslationProjectForm(forms.ModelForm):
 
@@ -175,11 +173,9 @@ def project_admin(request, project_code):
                     translationproject__project=current_project)
                 )
 
-
         class Meta:
             prefix = "existing_language"
             model = TranslationProject
-
 
         def process_extra_fields(self):
 

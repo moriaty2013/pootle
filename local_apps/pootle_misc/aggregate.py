@@ -59,7 +59,6 @@ except ImportError:
         except (IndexError, ObjectDoesNotExist):
             return default
 
-
     def sum_column(queryset, columns, count=False):
         initial = {}
         for column in columns:

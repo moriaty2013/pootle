@@ -315,7 +315,6 @@ class Unit(models.Model, base.TranslationUnit):
         unitclass = self.get_unit_class()
         return str(self.convert(unitclass))
 
-
     def getorig(self):
         unit = self.store.file.store.units[self.index]
         if self.getid() == unit.getid():
@@ -582,7 +581,6 @@ class Unit(models.Model, base.TranslationUnit):
             changed = self.merge(match_unit, authoritative=True)
             if changed:
                 return match_unit
-
 
     def merge(self, unit, overwrite=False, comments=True, authoritative=False):
         changed = False
@@ -1265,7 +1263,6 @@ class Store(models.Model, base.TranslationStore):
                     if oldstate >= CHECKED:
                         newunit.update_qualitychecks(created=True)
 
-
             if obsoletemissing:
                 obsolete_dbids = [self.dbid_index.get(uid) for uid in old_ids - new_ids]
                 for unit in self.findid_bulk(obsolete_dbids):
@@ -1299,7 +1296,6 @@ class Store(models.Model, base.TranslationStore):
             # unlock store
             self.state = oldstate
             self.save()
-
 
     def update_store_header(self, profile=None):
         language = self.translation_project.language
@@ -1342,7 +1338,6 @@ class Store(models.Model, base.TranslationStore):
 
             if language.nplurals and language.pluralequation:
                 self.file.store.updateheaderplural(language.nplurals, language.pluralequation)
-
 
 ############################## Pending Files #################################
 # The .pending files are deprecated since Pootle 2.1.0, but support for them

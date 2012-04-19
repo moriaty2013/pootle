@@ -75,7 +75,6 @@ msgstr[1] ""
 ''')
         pofile.close()
 
-
     def _setup_test_users(self):
         nonpriv = User(username=u"nonpriv",
                        first_name="Non privileged test user",
@@ -97,7 +96,6 @@ msgstr[1] ""
 
     def tearDown(self):
         self._teardown_test_podir()
-
 
     def follow_redirect(self, response):
         """follow a redirect chain until a non-redirect response is received"""

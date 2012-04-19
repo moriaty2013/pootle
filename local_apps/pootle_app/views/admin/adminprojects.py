@@ -35,7 +35,6 @@ def view(request):
     except Language.DoesNotExist:
         default_lang = queryset[0]
 
-
     class ProjectForm(forms.ModelForm):
         class Meta:
             model = Project
@@ -65,7 +64,6 @@ def view(request):
             if not value:
                 value = self.instance.treestyle
             return value
-
 
     model_args = {}
     model_args['title'] = _("Projects")

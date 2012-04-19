@@ -113,7 +113,6 @@ def login(request):
 
             return self.cleaned_data
 
-
     if request.user.is_authenticated():
         return redirect_after_login(request)
     else:

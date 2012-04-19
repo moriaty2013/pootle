@@ -99,7 +99,6 @@ class SiteConfigMiddleware(object):
                 response.exception = e
                 return response
 
-
     def process_response(self, request, response):
         """ this should be the last response processor to run, detect
         dummy response with INSTALL_STATUS_CODE status code and start

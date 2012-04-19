@@ -248,7 +248,6 @@ class State(object):
         for member in self.get_descriptors():
             yield member.var_name, getattr(self, member.var_name)
 
-
     def __init__(self, data={}, **initial):
         """Initialize a state object possibly reading initial state
         from C{data} (which is in raw text) and overriding those

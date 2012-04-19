@@ -30,7 +30,6 @@ class LegalPageForm(ModelForm):
     class Meta:
         model = LegalPage
 
-
     def clean(self):
 
         cleaned_data = super(LegalPageForm, self).clean()

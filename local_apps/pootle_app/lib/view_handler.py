@@ -41,7 +41,6 @@ class View(object):
         else:
             raise SubmitError('Only one submit action may be handled per POST')
 
-
     def find_handlers(self, forms):
 
         handlers = {}
@@ -56,11 +55,9 @@ class View(object):
 
         return handlers
 
-
     def __init__(self, forms):
         self.handlers = self.find_handlers(forms)
         self.forms = forms
-
 
     def __call__(self, request, *args, **kwargs):
 
@@ -92,20 +89,16 @@ class Handler(object):
 
     actions = []  # This should be all
 
-
     @classmethod
     def must_display(cls, request, *args, **kwargs):
         return True
 
-
     def __init__(self, request, data=None, files=None):
         self.form = self.Form(data=data, files=files)
-
 
     def dispatch(self, action, request, *args, **kwargs):
         handler = getattr(self, action)
         return handler(request, *args, **kwargs)
-
 
     def render_submits(self):
 
@@ -118,7 +111,6 @@ class Handler(object):
                        'action_value': unicode(action[1])}
 
         return mark_safe(output)
-
 
     def as_p(self):
         return mark_safe("""
