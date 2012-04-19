@@ -33,7 +33,7 @@ class Command(PootleCommand):
         make_option('--user', default='admin',
                     help="username to list in the commit message"),
         )
-        
+
     def handle_noargs(self, **options):
         from django.contrib.auth.models import User
         try:
