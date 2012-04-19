@@ -49,8 +49,8 @@ class Directory(models.Model):
 
     is_dir = True
 
-    name        = models.CharField(max_length=255, null=False)
-    parent      = models.ForeignKey('Directory', related_name='child_dirs', null=True, db_index=True)
+    name = models.CharField(max_length=255, null=False)
+    parent = models.ForeignKey('Directory', related_name='child_dirs', null=True, db_index=True)
     pootle_path = models.CharField(max_length=255, null=False, db_index=True)
 
     objects = DirectoryManager()
@@ -115,7 +115,7 @@ class Directory(models.Model):
             return empty_quickstats
         #FIXME: can we replace this with a quicker path query?
         file_result = statssum(self.child_stores.iterator())
-        dir_result  = statssum(self.child_dirs.iterator())
+        dir_result = statssum(self.child_dirs.iterator())
         stats = dictsum(file_result, dir_result)
         return stats
 
@@ -126,7 +126,7 @@ class Directory(models.Model):
         if self.is_template_project:
             return empty_completestats
         file_result = completestatssum(self.child_stores.iterator())
-        dir_result  = completestatssum(self.child_dirs.iterator())
+        dir_result = completestatssum(self.child_dirs.iterator())
         stats = dictsum(file_result, dir_result)
         return stats
         #queryset = QualityCheck.objects.filter(unit__store__pootle_path__startswith=self.pootle_path, false_positive=False)

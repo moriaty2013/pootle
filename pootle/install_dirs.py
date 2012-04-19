@@ -1,8 +1,8 @@
 import os
 
-CONFIG_DIR  = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-DATA_DIR    = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-SOURCE_DIR  = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+CONFIG_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+DATA_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+SOURCE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 WORKING_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 def config_path(filename):

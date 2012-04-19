@@ -62,7 +62,7 @@ class TPTranslateView(BaseView):
     def GET(self, template_vars, request, translation_project, directory):
         template_vars = super(TPTranslateView, self).GET(template_vars, request)
         request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
-        project  = translation_project.project
+        project = translation_project.project
         language = translation_project.language
         is_terminology = project.is_terminology
 
@@ -107,7 +107,7 @@ class TPReviewView(BaseView):
 
         request.permissions = get_matching_permissions(
                 get_profile(request.user), translation_project.directory)
-        project  = translation_project.project
+        project = translation_project.project
         language = translation_project.language
         is_terminology = project.is_terminology
 
@@ -238,8 +238,8 @@ class ProjectIndexView(BaseView):
     def GET(self, template_vars, request, translation_project, directory):
         template_vars = super(ProjectIndexView, self).GET(template_vars, request)
         request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
-        state    = dispatch.ProjectIndexState(request.GET)
-        project  = translation_project.project
+        state = dispatch.ProjectIndexState(request.GET)
+        project = translation_project.project
         language = translation_project.language
         is_terminology = project.is_terminology
 
@@ -549,7 +549,7 @@ def upload_file(request, directory, django_file, overwrite, store=None):
         local_filename = get_local_filename(translation_project, django_file.name)
         pootle_path = directory.pootle_path + local_filename
         # The full filesystem path to 'local_filename'
-        upload_path    = get_upload_path(translation_project, relative_root_dir, local_filename)
+        upload_path = get_upload_path(translation_project, relative_root_dir, local_filename)
         try:
             store = translation_project.stores.get(pootle_path=pootle_path)
         except Store.DoesNotExist:

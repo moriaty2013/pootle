@@ -34,7 +34,7 @@ from pootle_misc.util import add_percentages
 
 def get_item_summary(request, quick_stats, path_obj):
     translated_words = quick_stats['translatedsourcewords']
-    total_words      = quick_stats['totalsourcewords']
+    total_words = quick_stats['totalsourcewords']
 
     # The translated word counts
     word_stats = _("%(translated)d/%(total)d words (%(translatedpercent)d%%) translated",

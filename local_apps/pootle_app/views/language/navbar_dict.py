@@ -54,8 +54,8 @@ def make_navbar_path_dict(request, path_links=None):
         else:
             return None
 
-    language     = request.translation_project.language
-    project      = request.translation_project.project
+    language = request.translation_project.language
+    project = request.translation_project.project
     return {
         'admin':     make_admin(request),
         'language':  {'href': dispatch.open_language(request, language.code),

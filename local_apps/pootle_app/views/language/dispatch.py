@@ -25,19 +25,19 @@ from pootle_app import url_state, url_manip
 
 class CommonState(url_state.State):
     """Stores state common to project index pages and translation pages."""
-    editing       = url_state.BooleanValue('editing')
+    editing = url_state.BooleanValue('editing')
 
 ################################################################################
 
 class ProjectIndexState(CommonState):
-    show_checks   = url_state.BooleanValue('show_checks')
+    show_checks = url_state.BooleanValue('show_checks')
 
 ################################################################################
 
 class TranslatePageState(CommonState):
     # Search state
-    matchnames   = url_state.ListValue('matchnames')
-    unitstates   = url_state.ListValue('unitstates')
+    matchnames = url_state.ListValue('matchnames')
+    unitstates = url_state.ListValue('unitstates')
 
 def get_store(request):
     basename = url_manip.basename(request.path_info)

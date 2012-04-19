@@ -44,9 +44,9 @@ def initialize(projectdir, languagecode):
     projectroot = os.path.join(settings.PODIRECTORY, os.path.split(projectdir)[0])
 
     # Find the files we're working with
-    mainfile     = os.path.join(projectroot, languagecode, 'LC_MESSAGES', 'messages.po')
+    mainfile = os.path.join(projectroot, languagecode, 'LC_MESSAGES', 'messages.po')
     combinedfile = os.path.join(projectroot, languagecode, 'LC_MESSAGES', 'messages-combined.po')
-    sourcefile   = os.path.join(projectroot, 'en_US', 'LC_MESSAGES', 'messages.po')
+    sourcefile = os.path.join(projectroot, 'en_US', 'LC_MESSAGES', 'messages.po')
 
     # Build our combined file
     monopo2po.convertpo(open(sourcefile, "r"), open(combinedfile, "w"), open(mainfile, "r"))

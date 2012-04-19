@@ -90,8 +90,8 @@ class TranslationProject(models.Model):
         unique_together = ('language', 'project')
         db_table = 'pootle_app_translationproject'
 
-    language  = models.ForeignKey(Language, db_index=True)
-    project   = models.ForeignKey(Project, db_index=True)
+    language = models.ForeignKey(Language, db_index=True)
+    project = models.ForeignKey(Project, db_index=True)
     real_path = models.FilePathField(editable=False)
     directory = models.OneToOneField(Directory, db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True, editable=False)
@@ -272,7 +272,7 @@ class TranslationProject(models.Model):
     def scan_files(self):
         """returns a list of po files for the project and language"""
         ignored_files = set(p.strip() for p in self.project.ignoredfiles.split(','))
-        ext           = os.extsep + self.project.localfiletype
+        ext = os.extsep + self.project.localfiletype
 
         # scan for pots if template project
         if self.is_template_project:

@@ -25,7 +25,7 @@ def initialize(projectdir, languagecode):
 
     # Find the files we're working with
     tikifile = os.path.join(projectroot, languagecode, 'language.php')
-    pofile   = os.path.join(projectroot, languagecode, 'language.po')
+    pofile = os.path.join(projectroot, languagecode, 'language.po')
 
     # Build our combined file
     print "Initializing %s to %s" % (tikifile, pofile)
