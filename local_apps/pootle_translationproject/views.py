@@ -346,7 +346,7 @@ def get_local_filename(translation_project, upload_filename):
     if new_ext == 'po' and translation_project.is_template_project:
         new_ext = 'pot'
 
-    local_filename =  '%s.%s' % (base, new_ext)
+    local_filename = '%s.%s' % (base, new_ext)
 
     # check if name is valid
 

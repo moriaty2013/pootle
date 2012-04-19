@@ -289,7 +289,7 @@ msgstr "resto"
             'target_f_0': 'submitted translation',
             }
         submit_dict.update(unit_dict(pootle_path))
-        self.client.post("/unit/process/%d/%s" %  (submit_dict['id'], 'submission'),
+        self.client.post("/unit/process/%d/%s" % (submit_dict['id'], 'submission'),
                          submit_dict, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         response = self.client.get("/unit/edit/%d" % submit_dict['id'],
                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -317,7 +317,7 @@ msgstr "resto"
             'target_f_2': 'lots of fish',
             }
         submit_dict.update(unit_dict(pootle_path))
-        self.client.post("/unit/process/%d/%s" %  (submit_dict['id'], 'submission'),
+        self.client.post("/unit/process/%d/%s" % (submit_dict['id'], 'submission'),
                          submit_dict, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         response = self.client.get("/unit/edit/%d" % submit_dict['id'],
                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -343,7 +343,7 @@ msgstr "resto"
             'target_f_0': 'just fish',
             }
         submit_dict.update(unit_dict(pootle_path))
-        self.client.post("/unit/process/%d/%s" %  (submit_dict['id'], 'submission'),
+        self.client.post("/unit/process/%d/%s" % (submit_dict['id'], 'submission'),
                          submit_dict, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         response = self.client.get("/unit/edit/%d" % submit_dict['id'],
                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -368,7 +368,7 @@ msgstr "resto"
             'state': 'on',
             }
         submit_dict.update(unit_d)
-        self.client.post("/unit/process/%d/%s" %  (submit_dict['id'], 'submission'),
+        self.client.post("/unit/process/%d/%s" % (submit_dict['id'], 'submission'),
                          submit_dict, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.client.get("/unit/edit/%d" % submit_dict['id'],
                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -386,7 +386,7 @@ msgstr "resto"
             'submit': 'Submit',
             }
         submit_dict.update(unit_d)
-        self.client.post("/unit/process/%d/%s" %  (submit_dict['id'], 'submission'),
+        self.client.post("/unit/process/%d/%s" % (submit_dict['id'], 'submission'),
                          submit_dict, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.client.get("/unit/edit/%d" % submit_dict['id'],
                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -405,7 +405,7 @@ msgstr "resto"
             'submit': 'Submit',
             }
         submit_dict.update(unit_dict(pootle_path))
-        self.client.post("/unit/process/%d/%s" %  (submit_dict['id'], 'submission'),
+        self.client.post("/unit/process/%d/%s" % (submit_dict['id'], 'submission'),
                          submit_dict, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.client.get("/unit/edit/%d" % submit_dict['id'],
                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')

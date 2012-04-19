@@ -296,7 +296,7 @@ class TranslationProject(models.Model):
                 if not self.non_db_state._index_initialized:
                     self.init_index(indexer)
                     self.non_db_state._index_initialized = True
-                self.non_db_state.indexer =  indexer
+                self.non_db_state.indexer = indexer
             except Exception, e:
                 logging.warning(u"Could not initialize indexer for %s in %s: %s", self.project.code, self.language.code, str(e))
                 self.non_db_state._indexing_enabled = False
@@ -668,7 +668,7 @@ class TranslationProject(models.Model):
                     pluralequation = self.language.pluralequation
                     if pluralequation:
                         pluralfn = gettext.c2py(pluralequation)
-                        target =  unit.target.strings[pluralfn(n)]
+                        target = unit.target.strings[pluralfn(n)]
                         if target is not None:
                             return target
                 else:

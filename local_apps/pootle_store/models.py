@@ -1385,7 +1385,7 @@ class Store(models.Model, base.TranslationStore):
                 suggester = self.getsuggester_from_pending(sugg)
                 unit.add_suggestion(sugg.target, suggester, touch=False)
                 self.pending.store.units.remove(sugg)
-        if len(self.pending.store.units) >  1:
+        if len(self.pending.store.units) > 1:
             self.pending.savestore()
         else:
             self.pending.delete()

@@ -209,7 +209,7 @@ class CaptchaMiddleware:
             return
 
         if 'captcha_answer' in request.POST:
-            form =  MathCaptchaForm(request.POST)
+            form = MathCaptchaForm(request.POST)
             if form.is_valid():
                 request.session['ishuman'] = True
                 return

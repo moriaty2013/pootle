@@ -30,7 +30,7 @@ register = template.Library()
 def render_search(context, form=None, action=None):
     translation_project = context['translation_project']
     if form is None:
-        is_terminology =  translation_project.project.is_terminology
+        is_terminology = translation_project.project.is_terminology
         form = make_search_form(terminology=is_terminology)
     if action is None:
         action = l('translate.html')
