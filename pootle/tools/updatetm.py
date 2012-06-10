@@ -36,7 +36,9 @@ def memory(tmfile, max_candidates=4, min_similarity=75, max_length=1000):
     # Only initialise first time
     if tmmatcher is None:
         tmstore = factory.getobject(tmfile)
-        tmmatcher = match.matcher(tmstore, max_candidates=max_candidates, min_similarity=min_similarity, max_length=max_length)
+        tmmatcher = match.matcher(tmstore, max_candidates=max_candidates,
+                                  min_similarity=min_similarity,
+                                  max_length=max_length)
     return tmmatcher
 
 
